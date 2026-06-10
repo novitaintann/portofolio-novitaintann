@@ -1,722 +1,349 @@
 <!DOCTYPE html>
 <html lang="id">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>
-        Novita | Data Science Portfolio
-    </title>
-
-    <link rel="stylesheet"
-          href="style.css">
-
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-          rel="stylesheet">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novita Intan Nur Rohmah | Data Science Portfolio</title>
+    
+    <!-- Link Font Awesome (Untuk Ikon), Google Fonts, dan Devicon (Untuk Ikon Skill/Framework) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <!-- ================= NAVBAR ================= -->
-
 <nav class="navbar">
-
-    <div class="logo">
-        Novita ✨
+    <div class="logo">Novita Intan ✨</div>
+    
+    <div class="nav-right">
+        <ul class="nav-menu" id="navMenu">
+            <li><a href="#about">Tentang</a></li>
+            <li><a href="#education">Pendidikan</a></li>
+            <li><a href="#projects">Project</a></li>
+            <li><a href="#experience">Pengalaman</a></li>
+            <li><a href="#achievements">Prestasi</a></li>
+            <li><a href="#contact">Kontak</a></li>
+        </ul>
+        <button id="themeToggle" aria-label="Toggle Theme">🌙</button>
+        <div class="hamburger" id="hamburgerMenu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
     </div>
-
-    <ul>
-
-        <li>
-            <a href="#about">Tentang</a>
-        </li>
-
-        <li>
-            <a href="#education">Pendidikan</a>
-        </li>
-
-        <li>
-            <a href="#projects">Project</a>
-        </li>
-
-        <li>
-            <a href="#experience">Pengalaman</a>
-        </li>
-
-        <li>
-            <a href="#contact">Kontak</a>
-        </li>
-
-    </ul>
-
-    <button id="themeToggle">
-        🌙
-    </button>
-
 </nav>
 
 <!-- ================= HERO ================= -->
-
-<section class="hero">
-
+<section class="hero" id="home">
     <div class="hero-left">
-
-        <div class="search-box">
-
-            🔍 Data Science Portfolio
-
-        </div>
-
-        <h1 class="hero-name">
-
-            Novita
-
-        </h1>
-
+        <div class="search-box">🔍 Data Science Portfolio</div>
+        <h1 class="hero-name">Novita Intan Nur Rohmah</h1>
         <h2 id="typing"></h2>
-
         <p class="hero-desc">
-
-            Mahasiswa Sistem Informasi yang
-            berfokus pada Data Science,
-            Machine Learning,
-            Deep Learning,
-            NLP,
-            dan Time Series Forecasting.
-
-            
+            Mahasiswa Sistem Informasi yang berfokus pada Data Science, Machine Learning, Deep Learning, NLP, dan Time Series Forecasting.
         </p>
-
         <div class="hero-buttons">
-
-            <a href="#projects"
-               class="btn-primary">
-
-                Lihat Project
-
-            </a>
-
-            <a href="#contact"
-               class="btn-secondary">
-
-                Hubungi Saya
-
-            </a>
-
+            <a href="#projects" class="btn-primary">Lihat Project</a>
+            <a href="#contact" class="btn-secondary">Hubungi Saya</a>
         </div>
-
+        
+        <!-- Ikon Brand Skills/Framework Baru -->
         <div class="tools-container">
-
-            <div class="tool-card">
-                Python
-            </div>
-
-            <div class="tool-card">
-                Tableau
-            </div>
-
-            <div class="tool-card">
-                TensorFlow
-            </div>
-
-            <div class="tool-card">
-                Pandas
-            </div>
-
-            <div class="tool-card">
-                Scikit-Learn
-            </div>
-
-            <div class="tool-card">
-                NLP
-            </div>
-
+            <div class="tool-card"><i class="devicon-python-plain colored"></i> Python</div>
+            <div class="tool-card"><i class="devicon-pandas-plain colored"></i> Pandas</div>
+            <div class="tool-card"><i class="devicon-tensorflow-original colored"></i> TensorFlow</div>
+            <div class="tool-card"><i class="devicon-scikitlearn-plain colored"></i> Scikit-Learn</div>
+            <div class="tool-card"><i class="fa-solid fa-chart-simple" style="color: #e68523;"></i> Tableau</div>
+            <div class="tool-card"><i class="devicon-streamlit-plain colored"></i> Streamlit</div>
         </div>
-
     </div>
-
     <div class="hero-right">
-
         <div class="photo-card">
-
-            <img src="assets/profile.jpg"
-                 alt="Novita">
-
+            <img src="assets/profile.jpg" alt="Novita Intan Nur Rohmah">
         </div>
-
     </div>
-
 </section>
 
 <!-- ================= STATS ================= -->
-
 <section class="stats">
-
     <div class="stat-card">
-
-        <h3 class="counter"
-            data-target="30">
-
-            0
-
-        </h3>
-
-        <p>
-            Projects
-        </p>
-
+        <h3 class="counter" data-target="30">0</h3>
+        <p>Projects</p>
     </div>
-
     <div class="stat-card">
-
-        <h3 class="counter"
-            data-target="10">
-
-            0
-
-        </h3>
-
-        <p>
-            Organisasi
-        </p>
-
+        <h3 class="counter" data-target="10">0</h3>
+        <p>Organisasi</p>
     </div>
-
     <div class="stat-card">
-
-        <h3 class="counter"
-            data-target="5">
-
-            0
-
-        </h3>
-
-        <p>
-            Kompetisi
-        </p>
-
+        <h3 class="counter" data-target="5">0</h3>
+        <p>Kompetisi</p>
     </div>
-
     <div class="stat-card">
-
-        <h3 class="counter"
-            data-target="3">
-
-            0
-
-        </h3>
-
-        <p>
-            Bidang Riset
-        </p>
-
+        <h3 class="counter" data-target="3">0</h3>
+        <p>Bidang Riset</p>
     </div>
-
 </section>
 
 <!-- ================= ABOUT ================= -->
-
-<section id="about"
-         class="section">
-
-    <h2 class="section-title">
-
-        Tentang Saya
-
-    </h2>
+<section id="about" class="section">
+    <h2 class="section-title">Tentang Saya</h2>
 
     <div class="glass-card">
-
         <p>
-
-            Saya adalah mahasiswa Sistem Informasi
-            Universitas Duta Bangsa Surakarta
-            yang memiliki minat dalam bidang
-            Data Science dan Artificial Intelligence.
-
+            Halo! Saya <strong>Novita Intan Nur Rohmah</strong>, mahasiswa Sistem Informasi Universitas Duta Bangsa Surakarta dengan <strong>IPK sementara 4.00/4.00</strong>. Saya berfokus pada <strong>Data Science, Machine Learning, Deep Learning, NLP, dan Time Series Forecasting</strong> serta aktif mengembangkan berbagai proyek berbasis AI dan analisis data.
         </p>
 
         <br>
 
         <p>
-
-            Selain aktif mengembangkan project
-            Machine Learning dan Data Analytics,
-            saya juga memiliki pengalaman
-            dalam organisasi,
-            public speaking,
-            kepanitiaan,
-            serta content creation.
-
+            Selain aktif dalam riset dan menghasilkan <strong>dua publikasi artikel ilmiah nasional</strong>, saya juga memiliki pengalaman sebagai <strong>Sekretaris Umum Himpunan Mahasiswa</strong>, <strong>MC & Moderator</strong>, dan <strong>Talent Content Creator AI</strong>. Saya tertarik membangun solusi berbasis data yang akurat, mudah dipahami, dan memberikan dampak nyata.
         </p>
-
     </div>
-
 </section>
 
 <!-- ================= EDUCATION ================= -->
-
-<section id="education"
-         class="section">
-
-    <h2 class="section-title">
-
-        Pendidikan
-
-    </h2>
-
+<section id="education" class="section">
+    <h2 class="section-title">Pendidikan</h2>
     <div class="glass-card">
-
-        <h3>
-
-            Universitas Duta Bangsa Surakarta
-
-        </h3>
-
-        <span>
-
-            Sistem Informasi | 2023 - Sekarang
-
-        </span>
-
-        <p>
-
-            Fokus pada:
-
-        </p>
-
-        <div class="tags">
-
-            <span>
-                Machine Learning
-            </span>
-
-            <span>
-                Deep Learning
-            </span>
-
-            <span>
-                NLP
-            </span>
-
-            <span>
-                Time Series
-            </span>
-
-            <span>
-                Data Analytics
-            </span>
-
+        <h3>Universitas Duta Bangsa Surakarta</h3>
+        <div class="education-meta">
+            <span>S1 Sistem Informasi | 2023 - Sekarang</span>
+            <span class="gpa-badge">IPK: 4.00 / 4.00</span>
         </div>
-
+        <p>Fokus Riset & Kompetensi akademis meliputi pengembangan model prediktif dan pengelolaan arsitektur data:</p>
+        <div class="tags">
+            <span>Machine Learning</span>
+            <span>Deep Learning (CNN)</span>
+            <span>NLP</span>
+            <span>Time Series (SARIMA, LSTM)</span>
+            <span>Explainable AI (XAI)</span>
+        </div>
     </div>
-
 </section>
 
 <!-- ================= FEATURED PROJECTS ================= -->
-
-<section id="projects" class="section">
-
-    <h2 class="section-title">
-        Featured Projects
-    </h2>
-
+<section id="projectData" class="section">
+    <h2 class="section-title">Featured Projects</h2>
     <div class="project-grid">
-
-        <!-- BRIMO -->
-
+        <!-- PROJECT 1: STUNTING & XAI -->
         <div class="project-card">
-
             <div class="project-top">
-
                 <div class="project-tags">
+                    <span>TabNet & TabPFN</span>
+                    <span>Explainable AI</span>
+                </div>
+                <a href="https://github.com/novitaintann" target="_blank" class="github-link" rel="noopener noreferrer">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+            </div>
+            <h3>Predicting Stunting Resilience using XAI</h3>
+            <p>Studi komparatif algoritma tabular deep learning menggunakan TabNet dan TabPFN. Mengimplementasikan Explainable AI (XAI) untuk visualisasi kontribusi fitur kesehatan utama.</p>
+            <button onclick="openProject('stunting')" class="detail-btn">Lihat Detail →</button>
+        </div>
 
+        <!-- PROJECT 2: BRIMO -->
+        <div class="project-card">
+            <div class="project-top">
+                <div class="project-tags">
                     <span>NLP</span>
                     <span>Python</span>
-
                 </div>
-
-                <a href="https://github.com/username/brimo-project"
-                   target="_blank"
-                   class="github-link">
-
+                <a href="https://github.com/novitaintann" target="_blank" class="github-link" rel="noopener noreferrer">
                     <i class="fa-brands fa-github"></i>
-
                 </a>
-
             </div>
-
-            <h3>
-                Sentiment Analysis BRImo Reviews
-            </h3>
-
-            <p>
-
-                Analisis sentimen ribuan ulasan
-                pengguna BRImo menggunakan
-                Natural Language Processing.
-
-            </p>
-
-            <button
-                onclick="openProject('brimo')"
-                class="detail-btn">
-
-                Lihat Detail →
-
-            </button>
-
+            <h3>Sentiment Analysis BRImo Reviews</h3>
+            <p>Analisis sentimen ribuan ulasan pengguna aplikasi BRImo menggunakan pendekatan Natural Language Processing (NLP) untuk klasifikasi kepuasan pelanggan.</p>
+            <button onclick="openProject('brimo')" class="detail-btn">Lihat Detail →</button>
         </div>
 
-        <!-- ROSSMANN -->
-
+        <!-- PROJECT 3: ROSSMANN -->
         <div class="project-card">
-
             <div class="project-top">
-
                 <div class="project-tags">
-
                     <span>Time Series</span>
                     <span>Deep Learning</span>
-
                 </div>
-
-                <a href="#"
-                   class="github-link">
-
+                <a href="https://github.com/novitaintann" target="_blank" class="github-link" rel="noopener noreferrer">
                     <i class="fa-brands fa-github"></i>
-
                 </a>
-
             </div>
-
-            <h3>
-                Rossmann Store Sales Forecasting
-            </h3>
-
-            <p>
-
-                Perbandingan metode SARIMA,
-                RNN, LSTM, dan GRU untuk
-                prediksi penjualan harian.
-
-            </p>
-
-            <button
-                onclick="openProject('rossmann')"
-                class="detail-btn">
-
-                Lihat Detail →
-
-            </button>
-
+            <h3>Retail Sales Forecasting (SARIMA vs LSTM)</h3>
+            <p>Peramalan omzet retail harian Rossmann Store Sales. Membandingkan model statistik dengan arsitektur RNN, LSTM, dan GRU menggunakan evaluasi MAE, RMSE, dan R2 Score.</p>
+            <button onclick="openProject('rossmann')" class="detail-btn">Lihat Detail →</button>
         </div>
 
-        <!-- TOMATO -->
-
+        <!-- PROJECT 4: TOMATO & FRUITS -->
         <div class="project-card">
-
             <div class="project-top">
-
                 <div class="project-tags">
-
                     <span>CNN</span>
-                    <span>Computer Vision</span>
-
+                    <span>Streamlit</span>
                 </div>
-
-                <a href="#"
-                   class="github-link">
-
+                <a href="https://github.com/novitaintann" target="_blank" class="github-link" rel="noopener noreferrer">
                     <i class="fa-brands fa-github"></i>
-
                 </a>
-
             </div>
-
-            <h3>
-                Tomato Maturity Detection
-            </h3>
-
-            <p>
-
-                Klasifikasi tomat matang dan
-                mentah menggunakan
-                Convolutional Neural Network.
-
-            </p>
-
-            <button
-                onclick="openProject('tomato')"
-                class="detail-btn">
-
-                Lihat Detail →
-
-            </button>
-
+            <h3>Fruit Maturity Detection App</h3>
+            <p>Sistem klasifikasi kematangan citra buah (tomat, jeruk, pisang, apel) menggunakan CNN dan Random Forest, di-deploy secara real-time via web interaktif Streamlit.</p>
+            <button onclick="openProject('tomato')" class="detail-btn">Lihat Detail →</button>
         </div>
-
-        <!-- TABLEAU -->
-
-        <div class="project-card">
-
-            <div class="project-top">
-
-                <div class="project-tags">
-
-                    <span>Tableau</span>
-                    <span>Dashboard</span>
-
-                </div>
-
-                <a href="#"
-                   class="github-link">
-
-                    🔗
-
-                </a>
-
-            </div>
-
-            <h3>
-                Interactive Business Dashboard
-            </h3>
-
-            <p>
-
-                Dashboard Tableau untuk
-                monitoring KPI dan analisis
-                performa bisnis.
-
-            </p>
-
-            <button
-                onclick="openProject('tableau')"
-                class="detail-btn">
-
-                Lihat Detail →
-
-            </button>
-
-        </div>
-
     </div>
-
 </section>
 
+<!-- ================= PROFESSIONAL & LEADERSHIP EXPERIENCE ================= -->
 <section id="experience" class="section">
+    <h2 class="section-title">Professional & Leadership</h2>
 
-    <h2 class="section-title">
-        Leadership & Communication
-    </h2>
+    <div class="experience-grid-new">
 
-    <div class="experience-list">
-
-        <!-- Communication -->
-
-        <div class="experience-item">
-
-            <div class="experience-icon">
-                🎤
+        <!-- MySkill -->
+        <div class="exp-card-new">
+            <div class="exp-header">
+                <span class="exp-badge">Camp Ambassador</span>
+                <span class="exp-date">Mei 2026 – Sekarang</span>
             </div>
 
-            <div class="experience-content">
+            <h3>Campus Ambassador Batch 2</h3>
+            <h4>MySkill</h4>
 
-                <h3>
-                    Public Speaking & Event Facilitator
-                </h3>
+            <p>
+                Berpartisipasi sebagai Campus Ambassador dengan membantu promosi program MySkill melalui media sosial dan lingkungan kampus. Secara aktif mengikuti program pengembangan diri melalui platform e-learning MySkill serta menyelesaikan berbagai tugas mingguan terkait peningkatan keterampilan profesional, personal branding, dan pengembangan karier.
+            </p>
 
-                <p>
-                    Dipercaya oleh fakultas dan organisasi untuk memandu acara akademik sebagai Master of Ceremony (MC), moderator, dan fasilitator.
-                </p>
-
-                <div class="experience-tags">
-
-                    <span>Kuliah Pakar</span>
-
-                    <span>Workshop Proposal Skripsi 2025</span>
-
-                    <span>Workshop Proposal Skripsi 2026</span>
-
-                    <span>LDK FIKOM</span>
-
-                </div>
-
+            <div class="doc-links">
+                <a href="#" class="doc-link-btn">
+                    <i class="fa-solid fa-envelope"></i>
+                    Email Acceptance
+                </a>
             </div>
-
         </div>
 
-        <!-- Leadership -->
-
-        <div class="experience-item">
-
-            <div class="experience-icon">
-                👩‍💼
+        <!-- Gispy Research -->
+        <div class="exp-card-new">
+            <div class="exp-header">
+                <span class="exp-badge">Content Creator</span>
+                <span class="exp-date"> Maret 2026 – Sekarang</span>
             </div>
 
-            <div class="experience-content">
+            <h3>Talent Content Creator</h3>
+            <h4>Gispy Research AI Skripsi</h4>
 
-                <h3>
-                    Organizational Leadership
-                </h3>
+            <p>
+                Berperan sebagai Talent Content Creator dalam pembuatan konten edukatif mengenai pemanfaatan Artificial Intelligence (AI) untuk kebutuhan akademik dan penelitian. Bertanggung jawab membuat video sesuai brief yang diberikan tim, menyampaikan materi secara komunikatif, serta mendukung proses produksi konten digital berbasis AI untuk meningkatkan literasi teknologi di kalangan mahasiswa.
+            </p>
 
-                <p>
-                    Berpengalaman dalam pengelolaan administrasi organisasi, koordinasi kegiatan, dan perencanaan program kerja.
-                </p>
-
-                <div class="experience-tags">
-
-                    <span>Sekretaris HMPSI</span>
-
-                    <span>Sekretaris Dewan Ambalan</span>
-
-                    <span>Sie Acara KKN-T</span>
-
-                    <span>Open Recruitment HMPSI</span>
-
-                </div>
-
+            <div class="doc-links">
+                <a href="#" class="doc-link-btn">
+                    <i class="fa-solid fa-video"></i>
+                    Dokumentasi Konten
+                </a>
             </div>
-
         </div>
 
-        <!-- Creative -->
-
-        <div class="experience-item">
-
-            <div class="experience-icon">
-                🎨
+        <!-- HMPSI -->
+        <div class="exp-card-new">
+            <div class="exp-header">
+                <span class="exp-badge">Leadership</span>
+                <span class="exp-date">2023 – 2025</span>
             </div>
 
-            <div class="experience-content">
+            <h3>Sekretaris Umum & Koordinator</h3>
+            <h4>Himpunan Mahasiswa Program Studi Sistem Informasi</h4>
 
-                <h3>
-                    Creative Media & Branding
-                </h3>
+            <p>
+                Mengelola administrasi organisasi, pengarsipan dokumen, penyusunan proposal kegiatan, serta laporan pertanggungjawaban (LPJ). Dipercaya menjadi Master of Ceremony (MC) dan Moderator pada berbagai kegiatan akademik, termasuk Kuliah Pakar Data Science, Seminar Teknologi Informasi, Workshop Proposal Skripsi, dan kegiatan kemahasiswaan lainnya.
+            </p>
 
-                <p>
-                    Aktif dalam pembuatan konten digital, desain publikasi, dan pengelolaan media promosi kegiatan.
-                </p>
-
-                <div class="experience-tags">
-
-                    <span>Content Creator Gispy</span>
-
-                    <span>PDD Kampus Expo</span>
-
-                    <span>PDD Webinar Data Science</span>
-
-                    <span>Publikasi Jurnal</span>
-
-                </div>
-
+            <div class="doc-links">
+                <a href="#" class="doc-link-btn">
+                    <i class="fa-solid fa-images"></i>
+                    Dokumentasi Kegiatan
+                </a>
             </div>
-
-        </div>
-
-        <!-- Achievement -->
-
-        <div class="experience-item">
-
-            <div class="experience-icon">
-                🏆
-            </div>
-
-            <div class="experience-content">
-
-                <h3>
-                    Achievement & Development
-                </h3>
-
-                <p>
-                    Aktif mengikuti kompetisi, program pengembangan diri, dan kegiatan akademik tingkat nasional.
-                </p>
-
-                <div class="experience-tags">
-
-                    <span>Top 5 TDC ITS</span>
-
-                    <span>Finalis Mawapres UDB</span>
-
-                    <span>Campus Ambassador MySkill</span>
-
-                </div>
-
-            </div>
-
         </div>
 
     </div>
-
 </section>
 
+<!-- ================= PUBLICATIONS & AWARDS ================= -->
+<section id="achievements" class="section">
+    <h2 class="section-title">Publications & Awards</h2>
+    <div class="achievements-container">
+        <!-- Jurnal 1 -->
+        <div class="achievement-row">
+            <div class="ach-icon"><i class="fa-solid fa-book-bookmark"></i></div>
+            <div class="ach-text">
+                <h3>Publikasi Artikel Ilmiah Jurnal Nasional (2025)</h3>
+                <p><strong>Optimalisasi Produksi dan Profitabilitas UMKM Serabi Solo di Purwantoro, Wonogiri Menggunakan Integer Programming Branch and Bound</strong> <em>Prosiding Seminar Nasional HUBISINTEK.</em></p>
+                <div class="ach-actions">
+                    <a href="https://ojs.udb.ac.id/HUBISINTEK/article/view/4296/3133" target="_blank" class="ach-link"><i class="fa-solid fa-link"></i> Baca Jurnal</a>
+                    <a href="assets/sertifikat-hubisintek.pdf" target="_blank" class="ach-link"><i class="fa-solid fa-award"></i> Sertifikat</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Jurnal 2 -->
+        <div class="achievement-row">
+            <div class="ach-icon"><i class="fa-solid fa-book-bookmark"></i></div>
+            <div class="ach-text">
+                <h3>Publikasi Artikel Ilmiah Perancangan Sistem (2025)</h3>
+                <p><strong>Perancangan Sistem E-Recruitment Berbasis Web pada Toko Ganep's Tradisi Solo sebagai Upaya Digitalisasi</strong> <em>Prosiding Seminar Nasional SENATIB.</em></p>
+                <div class="ach-actions">
+                    <a href="https://doi.org/10.47701/c5h4ez77" target="_blank" class="ach-link"><i class="fa-solid fa-link"></i> Baca Jurnal</a>
+                    <a href="assets/sertifikat-senatib.pdf" target="_blank" class="ach-link"><i class="fa-solid fa-award"></i> Sertifikat</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Award 1 -->
+        <div class="achievement-row">
+            <div class="ach-icon"><i class="fa-solid fa-trophy"></i></div>
+            <div class="ach-text">
+                <h3>Top 5 Technology Development Competition (TDC) ITS</h3>
+                <p><strong>Kompetisi Bisnis Teknologi Tingkat Nasional (2024) – Pengembangan konsep arsitektur aplikasi "Heyra" untuk membantu penyandang tuna rungu wicara.</strong></p>
+                <div class="ach-actions">
+                    <a href="assets/sertifikat/TDC-ITS.jpeg" target="_blank" class="ach-link"><i class="fa-solid fa-award"></i> Sertifikat Lomba</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Award 2 -->
+        <div class="achievement-row">
+            <div class="ach-icon"><i class="fa-solid fa-medal"></i></div>
+            <div class="ach-text">
+                <h3>Finalis Mahasiswa Berprestasi (Pilmapres) 2026</h3>
+                <p><strong>Terpilih sebagai salah satu kandidat Mahasiswa Berprestasi Utama tingkat Universitas Duta Bangsa Surakarta.</strong></p>
+                <div class="ach-actions">
+                    <a href="assets/sertifikat/pilmapres.jpeg" target="_blank" class="ach-link"><i class="fa-solid fa-award"></i> Piagam Penghargaan</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <!-- ================= CONTACT ================= -->
-
 <section id="contact" class="contact-section">
-
     <div class="contact-wrapper">
-
-        <h2>
-            Open for Internship Opportunities
-        </h2>
-
-        <p>
-
-            Saat ini saya terbuka untuk kesempatan magang di bidang Data Science, Machine Learning, maupun Data Analytics.
-
-            Saya tertarik pada analisis data, sentiment analysis, computer vision, dan time series forecasting.
-
-        </p>
-
+        <h2>Open for Internship Opportunities</h2>
+        <p>Saat ini saya terbuka untuk kesempatan magang di bidang Data Science, Machine Learning, maupun Data Analytics.</p>
         <div class="contact-actions">
-
-            <a href="cv.pdf" class="contact-btn">
-                Resume
-            </a>
-
-            <a href="https://linkedin.com" class="contact-btn">
-                LinkedIn
-            </a>
-
-            <a href="https://github.com" class="contact-btn">
-                GitHub
-            </a>
-
-            <a href="mailto:email@gmail.com" class="contact-btn">
-                Email
-            </a>
-
+            <a href="cv.pdf" target="_blank" class="contact-btn"><i class="fa-solid fa-file-pdf"></i> Download CV (Resume)</a>
+            <a href="https://www.linkedin.com/in/novitaintann/" target="_blank" class="contact-btn" rel="noopener noreferrer"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+            <a href="https://github.com/novitaintann" target="_blank" class="contact-btn" rel="noopener noreferrer"><i class="fa-brands fa-github"></i> GitHub</a>
+            <a href="https://www.kaggle.com/novitaintann" target="_blank" class="contact-btn" rel="noopener noreferrer"><i class="fa-brands fa-kaggle"></i> Kaggle</a>
         </div>
-
     </div>
-
 </section>
-<!-- ================= MODAL ================= -->
 
-<div id="projectModal"
-     class="modal">
-
+<!-- PROJECT MODAL -->
+<div id="projectModal" class="modal">
     <div class="modal-content">
-
-        <span class="close"
-              onclick="closeProject()">
-
-            &times;
-
-        </span>
-
+        <span class="close" onclick="closeProject()">&times;</span>
         <div id="modalBody"></div>
-
     </div>
-
 </div>
 
 <script src="script.js"></script>

@@ -263,261 +263,126 @@ window.addEventListener(
 );
 
 
-// ===============================
-// MODAL PROJECT
-// ===============================
+/* ==========================================================================
+   1. DATA KONTEN DETAIL PROJECT (METODOLOGI STAR & DATA-DRIVEN)
+   ========================================================================== */
+const projectData = {
+    stunting: {
+        title: "Predicting Stunting Resilience using XAI",
+        image: "assets/project-stunting.png", // Ganti dengan screenshot grafik/XAI kamu nanti
+        tech: "TabNet, TabPFN, Python, Scikit-Learn, SHAP (Explainable AI)",
+        desc: `
+            <h4>Situation (Latar Belakang)</h4>
+            <p>Proyek riset ini dirancang untuk memprediksi tingkat resiliensi risiko stunting pada anak menggunakan dataset kesehatan masyarakat. Fokus utamanya adalah memecahkan masalah 'black-box' pada model AI di bidang medis agar keputusan model dapat dipertanggungjawabkan.</p>
+            
+            <h4>Action (Metodologi Teknis)</h4>
+            <ul>
+                <li>Mengimplementasikan pipeline pengolahan data tabular tingkat lanjut untuk membandingkan performa arsitektur modern <strong>TabNet</strong> dan <strong>TabPFN</strong>.</li>
+                <li>Menerapkan pendekatan <strong>Explainable AI (XAI)</strong> menggunakan visualisasi kontribusi fitur untuk membongkar variabel kesehatan utama yang paling memengaruhi indikasi stunting pada anak.</li>
+            </ul>
+            
+            <h4>Result (Hasil Pemodelan)</h4>
+            <p>Studi komparatif berhasil mengevaluasi akurasi serta efisiensi waktu komputasi antar model secara presisi, sekaligus memberikan interpretasi klinis yang transparan dan etis bagi tenaga kesehatan.</p>
+        `
+    },
+    brimo: {
+        title: "Sentiment Analysis BRImo Reviews",
+        image: "assets/project-brimo.png", // Ganti dengan screenshot grafik/dashboard kamu nanti
+        tech: "Python, NLP, NLTK, Scikit-Learn, Pandas, Web Scraping",
+        desc: `
+            <h4>Situation (Latar Belakang)</h4>
+            <p>Melakukan analisis sentimen berskala besar terhadap ribuan ulasan pengguna aplikasi perbankan digital BRImo di Google Play Store untuk mengidentifikasi tingkat kepuasan pelanggan secara otomatis.</p>
+            
+            <h4>Action (Metodologi Teknis)</h4>
+            <ul>
+                <li>Melakukan prapemrosesan teks (Natural Language Processing) secara end-to-end: tokenization, stopword removal, stemming bahasa Indonesia, hingga pembobotan TF-IDF.</li>
+                <li>Melatih model klasifikasi menggunakan algoritma Machine Learning untuk memisahkan ulasan ke dalam kategori sentimen positif, netral, dan negatif.</li>
+            </ul>
+            
+            <h4>Result (Hasil Pemodelan)</h4>
+            <p>Model mampu mengklasifikasikan sentimen ulasan dengan akurasi yang optimal, memberikan rekomendasi perbaikan fitur yang konkret untuk tim pengembang aplikasi berdasarkan kluster keluhan utama pengguna.</p>
+        `
+    },
+    rossmann: {
+        title: "Retail Sales Forecasting (SARIMA vs LSTM)",
+        image: "assets/project-rossmann.png", // Ganti dengan grafik ramalan actual vs predicted nanti
+        tech: "Python, TensorFlow, Keras, SARIMA, RNN, LSTM, GRU, Statsmodels",
+        desc: `
+            <h4>Situation (Latar Belakang)</h4>
+            <p>Membangun sistem peramalan (forecasting) omzet harian menggunakan dataset historis kompetisi Rossmann Store Sales untuk mendukung manajemen stok dan strategi bisnis ritel multi-cabang.</p>
+            
+            <h4>Action (Metodologi Teknis)</h4>
+            <ul>
+                <li>Melakukan Exploratory Data Analysis (EDA) mendalam untuk mengidentifikasi pola musiman (seasonality) dan tren promosi ritel.</li>
+                <li>Melakukan uji stasioneritas data menggunakan ADF Test, dilanjutkan dengan tahap feature scaling.</li>
+                <li>Mengeksperimen dan membandingkan performa model statistik tradisional (SARIMA) dengan variasi arsitektur jaringan saraf tiruan Deep Learning (RNN, LSTM, dan GRU).</li>
+            </ul>
+            
+            <h4>Result (Hasil Pemodelan)</h4>
+            <p>Model Deep Learning berhasil mengejar volatilitas tren penjualan dengan akurasi tinggi. Evaluasi performa divalidasi secara ketat menggunakan kombinasi metrik MAE, RMSE, MAPE, dan R2 Score.</p>
+        `
+    },
+    tomato: {
+        title: "Fruit Maturity Detection App",
+        image: "assets/project-fruit.png", // Ganti dengan screenshot antarmuka Streamlit kamu nanti
+        tech: "Convolutional Neural Network (CNN), Random Forest, Streamlit, Python, OpenCV",
+        desc: `
+            <h4>Situation (Latar Belakang)</h4>
+            <p>Membangun aplikasi visi komputer (Computer Vision) pintar terintegrasi untuk mendeteksi dan mengklasifikasikan tingkat kematangan multispesies buah (tomat, jeruk, pisang, apel) secara real-time.</p>
+            
+            <h4>Action (Metodologi Teknis)</h4>
+            <ul>
+                <li>Mengelola pipeline data citra digital mulai dari prapemrosesan gambar (resizing, pencahayaan), ekstraksi fitur warna/tekstur ke format terstruktur (CSV), hingga augmentasi data gambar.</li>
+                <li>Melatih model menggunakan kombinasi arsitektur Deep Learning (CNN) dan Machine Learning tradisional (Random Forest).</li>
+                <li>Mendeploy model terbaik ke dalam platform antarmuka web interaktif berbasis Streamlit.</li>
+            </ul>
+            
+            <h4>Result (Hasil Pemodelan)</h4>
+            <p>Sistem berhasil melakukan deteksi kualitas dan kematangan buah secara real-time melalui simulasi unggah gambar dengan performa klasifikasi yang tinggi.</p>
+        `
+    }
+};
 
-const modal =
-document.getElementById(
-    "projectModal"
-);
+/* ==========================================================================
+   2. LOGIKA KONTROL INTERAKSI POP-UP MODAL
+   ========================================================================== */
+const modal = document.getElementById('projectModal');
+const modalBody = document.getElementById('modalBody');
 
-const modalBody =
-document.getElementById(
-    "modalBody"
-);
-
-function openProject(project){
-
-let content = "";
-
-
-// ===============================
-// BRIMO
-// ===============================
-
-if(project === "brimo"){
-
-content = `
-
-<h2>📊 Analisis Sentimen BRImo</h2>
-
-<img src="assets/brimo1.jpg">
-
-<br><br>
-
-<h3>Latar Belakang</h3>
-
-<p>
-Proyek ini bertujuan menganalisis
-sentimen ulasan pengguna aplikasi
-BRImo dari Google Play Store.
-</p>
-
-<br>
-
-<h3>Tujuan</h3>
-
-<p>
-Mengelompokkan ulasan pengguna
-ke dalam sentimen positif dan
-negatif menggunakan NLP.
-</p>
-
-<br>
-
-<h3>Tools</h3>
-
-<ul>
-
-<li>Python</li>
-
-<li>Pandas</li>
-
-<li>NLTK</li>
-
-<li>Scikit-Learn</li>
-
-<li>Matplotlib</li>
-
-</ul>
-
-<br>
-
-<h3>Pembelajaran</h3>
-
-<p>
-Memahami preprocessing teks,
-TF-IDF,
-dan evaluasi model klasifikasi.
-</p>
-
-`;
-
+function openProject(id) {
+    const project = projectData[id];
+    if (project && modal && modalBody) {
+        // Menyusun kerangka visual di dalam boks pop-up
+        modalBody.innerHTML = `
+            <h2>${project.title}</h2>
+            <div class="modal-tech-badge"><i class="fa-solid fa-code"></i> Stack: ${project.tech}</div>
+            <div class="modal-image-container">
+                <img src="${project.image}" alt="${project.title}" onerror="this.src='https://images.;">
+                <p class="img-caption">*Gambar di atas</p>
+            </div>
+            <div class="modal-detail-text">
+                ${project.desc}
+            </div>
+        `;
+        // Tampilkan modal
+        modal.style.display = "block";
+        document.body.style.overflow = "hidden"; // Mengunci scroll layar utama saat pop-up aktif
+    }
 }
 
-
-// ===============================
-// ROSSMANN
-// ===============================
-
-else if(project === "rossmann"){
-
-content = `
-
-<h2>📈 Rossmann Forecasting</h2>
-
-<img src="assets/rossmann1.jpg">
-
-<br><br>
-
-<h3>Latar Belakang</h3>
-
-<p>
-Memprediksi penjualan harian
-Rossmann Store menggunakan
-metode statistik dan deep learning.
-</p>
-
-<br>
-
-<h3>Metode</h3>
-
-<ul>
-
-<li>SARIMA</li>
-
-<li>RNN</li>
-
-<li>LSTM</li>
-
-<li>GRU</li>
-
-</ul>
-
-<br>
-
-<h3>Pembelajaran</h3>
-
-<p>
-Memahami forecasting
-dan perbandingan performa model.
-</p>
-
-`;
-
+function closeProject() {
+    if (modal) {
+        modal.style.display = "none";
+        document.body.style.overflow = "auto"; // Mengaktifkan kembali scroll layar utama
+    }
 }
 
-
-// ===============================
-// TOMATO
-// ===============================
-
-else if(project === "tomato"){
-
-content = `
-
-<h2>🍅 Tomato Classification</h2>
-
-<img src="assets/tomato1.jpg">
-
-<br><br>
-
-<h3>Latar Belakang</h3>
-
-<p>
-Klasifikasi tomat matang
-dan mentah menggunakan
-Computer Vision.
-</p>
-
-<br>
-
-<h3>Tools</h3>
-
-<ul>
-
-<li>TensorFlow</li>
-
-<li>Keras</li>
-
-<li>OpenCV</li>
-
-</ul>
-
-<br>
-
-<h3>Pembelajaran</h3>
-
-<p>
-Mempelajari CNN,
-image preprocessing,
-dan klasifikasi citra.
-</p>
-
-`;
-
-}
-
-
-// ===============================
-// FRUIT
-// ===============================
-
-else if(project === "fruit"){
-
-content = `
-
-<h2>🍎 Fruit Freshness Classification</h2>
-
-<img src="assets/fruit1.jpg">
-
-<br><br>
-
-<h3>Latar Belakang</h3>
-
-<p>
-Mendeteksi buah segar
-dan busuk menggunakan
-Deep Learning.
-</p>
-
-<br>
-
-<h3>Tools</h3>
-
-<ul>
-
-<li>TensorFlow</li>
-
-<li>Keras</li>
-
-<li>Python</li>
-
-</ul>
-
-<br>
-
-<h3>Pembelajaran</h3>
-
-<p>
-Menerapkan image classification
-pada studi kasus nyata.
-</p>
-
-`;
-
-}
-
-modalBody.innerHTML =
-content;
-
-modal.style.display =
-"block";
-
-}
-
-
-// ===============================
-// CLOSE MODAL
-// ===============================
-
-function closeProject(){
-
-modal.style.display =
-"none";
-
-}
+// Menutup modal otomatis jika area luar kotak pop-up di-klik
+window.onclick = function(event) {
+    if (event.target == modal) {
+        closeProject();
+    }
+};
 
 
 // ===============================
@@ -555,3 +420,22 @@ modal.style.display =
 
 }
 );
+
+// Ambil elemen navigasi
+const hamburger = document.getElementById('hamburgerMenu');
+const navMenu = document.getElementById('navMenu');
+
+// Fungsi Klik Hamburger Toggle
+if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+    });
+
+    // Menutup menu drop-down secara otomatis jika salah satu menu tautan diklik
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+        });
+    });
+}
+
