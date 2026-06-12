@@ -685,7 +685,7 @@ body.dark .navbar {
 }
 
 /* ==========================================================================
-   PERBAIKAN MODAL RESPONSIF (UNTUK HP, TABLET, & LAPTOP)
+   PERBAIKAN TOTAL MODAL RESPONSIF (ANTI NGE-ZOOM & PAS DI SEMUA LAYAR)
    ========================================================================== */
 
 /* 1. Container Utama Modal */
@@ -697,26 +697,38 @@ body.dark .navbar {
     top: 0;
     width: 100%; 
     height: 100%; 
-    overflow: auto; 
     background-color: rgba(0, 0, 0, 0.6); /* Latar belakang agak gelap */
     backdrop-filter: blur(5px); /* Efek blur estetik di belakang pop-up */
-    padding: 20px 10px; /* Jarak aman di layar HP agar tidak mentok ke atas/bawah */
+    padding: 12px; /* Jarak aman tipis di pinggiran layar HP agar tidak mentok */
     box-sizing: border-box;
+
+    /* MENGGUNAKAN FLEXBOX: Memaksa modal SELALU berada di tengah layar HP/Laptop */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Trik CSS: Jika JavaScript mengubah display menjadi block, kita paksa menjadi flex 
+   agar posisi boks tetap presisi di tengah layar tanpa merusak fungsi openProject() */
+[style*="display: block"]#projectModal {
+    display: flex !important;
 }
 
 /* 2. Kotak Konten di Dalam Modal */
 .modal-content {
     background-color: var(--card-bg, #ffffff); /* Menyesuaikan jika ada fitur dark mode */
     color: var(--text-color, #333333);
-    margin: 5% auto; /* Jarak dari atas layar laptop */
-    padding: 25px;
+    padding: 20px;
     border-radius: 12px;
-    width: 90%; /* Lebar fleksibel di HP */
-    max-width: 750px; /* Lebar maksimal di layar laptop */
+    width: 100%; /* Memanfaatkan ruang secara fleksibel */
+    max-width: 650px; /* Lebar maksimal yang ideal di layar laptop */
     position: relative;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     box-sizing: border-box;
-    animation: zoomIn 0.3s ease; /* Animasi pop-up muncul */
+    animation: zoomIn 0.25s ease; /* Animasi pop-up muncul */
+
+    /* KUNCI ANTI NGE-ZOOM: Membatasi tinggi boks modal agar tidak meluber keluar layar HP */
+    max-height: 85vh; /* Tinggi maksimal adalah 85% dari tinggi layar HP */
+    overflow-y: auto; /* Jika teks atau konten terlalu panjang, boks modal bisa di-scroll di dalam */
 }
 
 /* 3. Tombol Close (Silang) */
@@ -739,21 +751,51 @@ body.dark .navbar {
 /* 4. Kontainer Gambar Proyek / Sertifikat JPEG agar Fleksibel */
 .modal-image-container {
     width: 100%;
-    max-height: 400px; /* Batasi tinggi gambar di laptop agar teks di bawahnya tetap kelihatan */
+    max-height: 280px; /* Diturunkan sedikit ukurannya agar pas di layar HP */
     overflow: hidden;
     border-radius: 8px;
     margin: 15px 0;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    background-color: #f5f5f5;
+    background-color: #f9f9f9;
 }
 
 .modal-image-container img {
-    width: 100%;
-    height: 100%;
-    max-height: 360px;
-    object-fit: contain; /* Gambar akan mengecil secara proporsional, tidak terpotong */
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Gambar mengecil secara proporsional sesuai boks, tidak terpotong */
+}
+
+.img-caption {
+    font-size: 11px;
+    color: #777;
+    margin: 5px 0;
+    text-align: center;
+}
+
+/* Animasi Pop-up */
+@keyframes zoomIn {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* ==========================================================================
+   MEDIA QUERIES (PENYESUAIAN TAMBAHAN KHUSUS LAYAR HP < 480px)
+   ========================================================================== */
+@media screen and (max-width: 480px) {
+    .modal-content {
+        padding: 15px; /* Padding lebih ramping di HP agar teks tidak terlalu sempit */
+    }
+
+    .modal-content h2 {
+        font-size: 18px; /* Ukuran judul disesuaikan agar pas di HP */
+        padding-right: 20px; /* Beri ruang agar tidak menabrak tombol silang */
+    }
+
+    .modal-image-container {
+        max-height: 200px; /* Batasi tinggi gambar sertifikat saat di HP */
+    }
 }
 
 .img-caption {
