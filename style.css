@@ -684,28 +684,160 @@ body.dark .navbar {
     transform: translateY(-3px);
 }
 
-/* SYSTEM MODAL DISPLAY */
+/* ==========================================================================
+   PERBAIKAN MODAL RESPONSIF (UNTUK HP, TABLET, & LAPTOP)
+   ========================================================================== */
+
+/* 1. Container Utama Modal */
 .modal {
-    display: none;
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,.6);
-    z-index: 99999;
+    display: none; 
+    position: fixed; 
+    z-index: 1000; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgba(0, 0, 0, 0.6); /* Latar belakang agak gelap */
+    backdrop-filter: blur(5px); /* Efek blur estetik di belakang pop-up */
+    padding: 20px 10px; /* Jarak aman di layar HP agar tidak mentok ke atas/bawah */
+    box-sizing: border-box;
 }
 
+/* 2. Kotak Konten di Dalam Modal */
 .modal-content {
-    background: var(--card);
-    color: var(--text);
-    width: 90%;
-    max-width: 850px;
-    max-height: 80vh;
-    overflow-y: auto;
-    margin: 50px auto;
-    padding: 35px;
-    border-radius: 25px;
+    background-color: var(--card-bg, #ffffff); /* Menyesuaikan jika ada fitur dark mode */
+    color: var(--text-color, #333333);
+    margin: 5% auto; /* Jarak dari atas layar laptop */
+    padding: 25px;
+    border-radius: 12px;
+    width: 90%; /* Lebar fleksibel di HP */
+    max-width: 750px; /* Lebar maksimal di layar laptop */
     position: relative;
-    animation: modalOpen .4s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
+    animation: zoomIn 0.3s ease; /* Animasi pop-up muncul */
+}
+
+/* 3. Tombol Close (Silang) */
+.modal-content .close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #999;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    z-index: 10;
+}
+
+.modal-content .close:hover {
+    color: #333;
+}
+
+/* 4. Kontainer Gambar Proyek / Sertifikat JPEG agar Fleksibel */
+.modal-image-container {
+    width: 100%;
+    max-height: 400px; /* Batasi tinggi gambar di laptop agar teks di bawahnya tetap kelihatan */
+    overflow: hidden;
+    border-radius: 8px;
+    margin: 15px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f5f5f5;
+}
+
+.modal-image-container img {
+    width: 100%;
+    height: 100%;
+    max-height: 360px;
+    object-fit: contain; /* Gambar akan mengecil secara proporsional, tidak terpotong */
+}
+
+.img-caption {
+    font-size: 11px;
+    color: #777;
+    margin: 5px 0;
+    text-align: center;
+}
+
+/* 5. Kontainer PDF Iframe (Sertifikat Hubisintek) agar Auto-Responsive */
+.pdf-container {
+    position: relative;
+    padding-bottom: 56.25%; /* Aspek rasio 16:9 */
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-top: 15px;
+}
+
+.pdf-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* 6. Pembungkus Teks Detail (STAR Method) */
+.modal-detail-text {
+    margin-top: 20px;
+    line-height: 1.6;
+    font-size: 15px;
+}
+
+.modal-detail-text h4 {
+    margin-top: 15px;
+    margin-bottom: 5px;
+    color: #e68523; /* Menyesuaikan warna tema portofoliomu */
+}
+
+.modal-detail-text ul {
+    padding-left: 20px;
+    margin-bottom: 10px;
+}
+
+/* Animasi Zoom In */
+@keyframes zoomIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* ==========================================================================
+   MEDIA QUERIES (KHUSUS UNTUK HP DAN LAYAR KECIL < 576px)
+   ========================================================================== */
+@media screen and (max-width: 576px) {
+    .modal-content {
+        margin: 10% auto; /* Jarak atas disesuaikan untuk HP */
+        padding: 20px 15px; /* Perkecil padding dalam agar teks tidak terlalu sempit */
+        width: 95%; /* Maksimalkan lebar kotak di layar HP yang sempit */
+    }
+
+    .modal-content h2 {
+        font-size: 20px; /* Perkecil ukuran judul proyek/sertifikat di HP */
+        padding-right: 25px; /* Beri ruang agar tidak menabrak tombol silang (close) */
+    }
+
+    .modal-image-container {
+        max-height: 250px; /* Batasi tinggi gambar di HP agar tidak memenuhi satu layar */
+    }
+    
+    .modal-image-container img {
+        max-height: 220px;
+    }
+
+    .pdf-container {
+        padding-bottom: 75%; /* Ubah aspek rasio sedikit lebih tinggi di HP agar PDF lebih mudah dibaca */
+    }
+    
+    .modal-detail-text {
+        font-size: 13.5px; /* Sesuaikan ukuran font detail teks di HP */
+    }
 }
 
 @keyframes modalOpen {

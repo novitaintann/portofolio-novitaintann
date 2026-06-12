@@ -269,7 +269,7 @@ window.addEventListener(
 const projectData = {
     stunting: {
         title: "Predicting Stunting Resilience using XAI",
-        image: "assets/project-stunting.png", // Ganti dengan screenshot grafik/XAI kamu nanti
+        image: "assets/project-stunting.png", 
         tech: "TabNet, TabPFN, Python, Scikit-Learn, SHAP (Explainable AI)",
         desc: `
             <h4>Situation (Latar Belakang)</h4>
@@ -287,7 +287,7 @@ const projectData = {
     },
     brimo: {
         title: "Sentiment Analysis BRImo Reviews",
-        image: "assets/project-brimo.png", // Ganti dengan screenshot grafik/dashboard kamu nanti
+        image: "assets/project-brimo.png", 
         tech: "Python, NLP, NLTK, Scikit-Learn, Pandas, Web Scraping",
         desc: `
             <h4>Situation (Latar Belakang)</h4>
@@ -305,7 +305,7 @@ const projectData = {
     },
     rossmann: {
         title: "Retail Sales Forecasting (SARIMA vs LSTM)",
-        image: "assets/project-rossmann.png", // Ganti dengan grafik ramalan actual vs predicted nanti
+        image: "assets/project-rossmann.png", 
         tech: "Python, TensorFlow, Keras, SARIMA, RNN, LSTM, GRU, Statsmodels",
         desc: `
             <h4>Situation (Latar Belakang)</h4>
@@ -324,7 +324,7 @@ const projectData = {
     },
     tomato: {
         title: "Fruit Maturity Detection App",
-        image: "assets/project-fruit.png", // Ganti dengan screenshot antarmuka Streamlit kamu nanti
+        image: "assets/project-fruit.png", 
         tech: "Convolutional Neural Network (CNN), Random Forest, Streamlit, Python, OpenCV",
         desc: `
             <h4>Situation (Latar Belakang)</h4>
@@ -332,13 +332,49 @@ const projectData = {
             
             <h4>Action (Metodologi Teknis)</h4>
             <ul>
-                <li>Mengelola pipeline data citra digital mulai dari prapemrosesan gambar (resizing, pencahayaan), ekstraksi fitur warna/tekstur ke format terstruktur (CSV), hingga augmentasi data gambar.</li>
+                <li>Mengelola pipeline data citra digital mulai dari prapemrosesan gambar (resizing, pencahayaan), ekstraksi fitur warna/tekstur ke format terstructured (CSV), hingga augmentasi data gambar.</li>
                 <li>Melatih model menggunakan kombinasi arsitektur Deep Learning (CNN) dan Machine Learning tradisional (Random Forest).</li>
                 <li>Mendeploy model terbaik ke dalam platform antarmuka web interaktif berbasis Streamlit.</li>
             </ul>
             
             <h4>Result (Hasil Pemodelan)</h4>
             <p>Sistem berhasil melakukan deteksi kualitas dan kematangan buah secara real-time melalui simulasi unggah gambar dengan performa klasifikasi yang tinggi.</p>
+        `
+    },
+    hubisintek: {
+        title: "Sertifikat Hubisintek",
+        image: "", 
+        tech: "Penghargaan / Sertifikasi Resmi",
+        desc: `
+            <h4>Pratinjau Sertifikat</h4>
+            <div class="pdf-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
+                <iframe src="assets/sertifikat-hubisintek.pdf" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" type="application/pdf"></iframe>
+            </div>
+            <p style="margin-top: 15px; text-align: center;">
+                <a href="assets/sertifikat-hubisintek.pdf" target="_blank" style="text-decoration: none; display: inline-block; padding: 10px 20px; background-color: #e68523; color: white; border-radius: 6px; font-weight: 500;">
+                    <i class="fa-solid fa-download"></i> Buka Penuh / Download PDF
+                </a>
+            </p>
+        `
+    },
+    tdc_its: {
+        title: "Sertifikat Top 5 Technology Development Competition (TDC) ITS",
+        image: "assets/sertifikat/TDC-ITS.jpeg",
+        tech: "Penghargaan Kompetisi Tingkat Nasional",
+        desc: `
+            <h4>Detail Penghargaan</h4>
+            <p>Sertifikat resmi atas pencapaian sebagai <strong>Top 5 Finalis</strong> dalam ajang Technology Development Competition (TDC) yang diselenggarakan oleh Institut Teknologi Sepuluh Nopember (ITS) pada tahun 2024.</p>
+            <p>Kompetisi ini berfokus pada pengembangan konsep arsitektur aplikasi inovatif bernama <strong>"Heyra"</strong> yang dirancang khusus untuk membantu mempermudah komunikasi bagi penyandang tuna rungu wicara.</p>
+        `
+    },
+    pilmapres: {
+        title: "Piagam Penghargaan Mahasiswa Berprestasi (Pilmapres) 2026",
+        image: "assets/sertifikat/pilmapres.jpeg",
+        tech: "Apresiasi Akademik & Non-Akademik",
+        desc: `
+            <h4>Detail Penghargaan</h4>
+            <p>Piagam penghargaan atas pencapaian terpilih sebagai salah satu <strong>Finalis Mahasiswa Berprestasi Utama (Pilmapres) 2026</strong> tingkat Universitas Duta Bangsa Surakarta.</p>
+            <p>Penghargaan ini diberikan berdasarkan penilaian akumulatif terhadap capaian unggulan, kemampuan bahasa asing, keaktifan organisasi, serta presentasi gagasan kreatif berbasis teknologi digital.</p>
         `
     }
 };
@@ -352,14 +388,20 @@ const modalBody = document.getElementById('modalBody');
 function openProject(id) {
     const project = projectData[id];
     if (project && modal && modalBody) {
+        
+        // Cek jika project memiliki file path gambar, tampilkan kontainer gambar modal
+        const imageHTML = project.image ? `
+            <div class="modal-image-container">
+                <img src="${project.image}" alt="${project.title}" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1000';">
+                <p class="img-caption">*Gambar Dokumentasi / Sertifikat Terkait</p>
+            </div>
+        ` : '';
+
         // Menyusun kerangka visual di dalam boks pop-up
         modalBody.innerHTML = `
             <h2>${project.title}</h2>
-            <div class="modal-tech-badge"><i class="fa-solid fa-code"></i> Stack: ${project.tech}</div>
-            <div class="modal-image-container">
-                <img src="${project.image}" alt="${project.title}" onerror="this.src='https://images.;">
-                <p class="img-caption">*Gambar di atas</p>
-            </div>
+            <div class="modal-tech-badge"><i class="fa-solid fa-code"></i> Kategori: ${project.tech}</div>
+            ${imageHTML}
             <div class="modal-detail-text">
                 ${project.desc}
             </div>
@@ -384,23 +426,6 @@ window.onclick = function(event) {
     }
 };
 
-
-// ===============================
-// CLOSE MODAL OUTSIDE
-// ===============================
-
-window.onclick = function(event){
-
-if(event.target == modal){
-
-modal.style.display =
-"none";
-
-}
-
-};
-
-
 // ===============================
 // ESC KEY CLOSE MODAL
 // ===============================
@@ -412,16 +437,16 @@ function(event){
 if(
 event.key === "Escape"
 ){
-
-modal.style.display =
-"none";
-
+    closeProject();
 }
 
 }
 );
 
-// Ambil elemen navigasi
+// ===============================
+// HAMBURGER MENU
+// ===============================
+
 const hamburger = document.getElementById('hamburgerMenu');
 const navMenu = document.getElementById('navMenu');
 
@@ -438,4 +463,3 @@ if (hamburger && navMenu) {
         });
     });
 }
-
