@@ -15,7 +15,7 @@
 
 <!-- ================= NAVBAR ================= -->
 <nav class="navbar">
-    <div class="logo">Novita Intan ✨</div>
+    <div class="logo">Novita Intan ⋆˙⟡ </div>
     
     <div class="nav-right">
         <ul class="nav-menu" id="navMenu">
@@ -38,7 +38,7 @@
 <!-- ================= HERO ================= -->
 <section class="hero" id="home">
     <div class="hero-left">
-        <div class="search-box">🔍 Data Science Portfolio</div>
+        <div class="search-box"><i class="fa-solid fa-magnifying-glass" style="margin-right: 5px;"></i> Data Science Portfolio</div>
         <h1 class="hero-name">Novita Intan Nur Rohmah</h1>
         <h2 id="typing"></h2>
         <p class="hero-desc">
@@ -69,15 +69,15 @@
 <!-- ================= STATS ================= -->
 <section class="stats">
     <div class="stat-card">
-        <h3 class="counter" data-target="30">0</h3>
+        <h3 class="counter" data-target="5">0</h3>
         <p>Projects</p>
     </div>
     <div class="stat-card">
-        <h3 class="counter" data-target="10">0</h3>
+        <h3 class="counter" data-target="2">0</h3>
         <p>Organisasi</p>
     </div>
     <div class="stat-card">
-        <h3 class="counter" data-target="5">0</h3>
+        <h3 class="counter" data-target="2">0</h3>
         <p>Kompetisi</p>
     </div>
     <div class="stat-card">
@@ -123,12 +123,18 @@
     </div>
 </section>
 
-<!-- ================= FEATURED PROJECTS ================= -->
 <section id="projectData" class="section">
     <h2 class="section-title">Featured Projects</h2>
-    <div class="project-grid">
-        <!-- PROJECT 1: STUNTING & XAI -->
-        <div class="project-card">
+    
+    <div class="project-filter-container">
+        <button class="filter-btn active" data-filter="all">All Projects</button>
+        <button class="filter-btn" data-filter="deep-learning">Deep Learning & XAI</button>
+        <button class="filter-btn" data-filter="nlp">NLP</button>
+        <button class="filter-btn" data-filter="time-series">Time Series</button>
+    </div>
+
+    <div class="project-grid" id="projectGrid">
+        <div class="project-card" data-category="deep-learning">
             <div class="project-top">
                 <div class="project-tags">
                     <span>TabNet & TabPFN</span>
@@ -143,8 +149,7 @@
             <button onclick="openProject('stunting')" class="detail-btn">Lihat Detail →</button>
         </div>
 
-        <!-- PROJECT 2: BRIMO -->
-        <div class="project-card">
+        <div class="project-card" data-category="nlp">
             <div class="project-top">
                 <div class="project-tags">
                     <span>NLP</span>
@@ -159,8 +164,7 @@
             <button onclick="openProject('brimo')" class="detail-btn">Lihat Detail →</button>
         </div>
 
-        <!-- PROJECT 3: ROSSMANN -->
-        <div class="project-card">
+        <div class="project-card" data-category="time-series">
             <div class="project-top">
                 <div class="project-tags">
                     <span>Time Series</span>
@@ -175,8 +179,7 @@
             <button onclick="openProject('rossmann')" class="detail-btn">Lihat Detail →</button>
         </div>
 
-        <!-- PROJECT 4: TOMATO & FRUITS -->
-        <div class="project-card">
+        <div class="project-card" data-category="deep-learning">
             <div class="project-top">
                 <div class="project-tags">
                     <span>CNN</span>
@@ -324,6 +327,19 @@
                 <p><strong>Terpilih sebagai salah satu kandidat Mahasiswa Berprestasi Utama tingkat Universitas Duta Bangsa Surakarta.</strong></p>
                 <div class="ach-actions">
                     <button onclick="openProject('pilmapres')" class="ach-link" style="background: none; border: none; cursor: pointer; color: inherit; font: inherit; padding: 0; display: inline-flex; align-items: center; gap: 5px;">
+                        <i class="fa-solid fa-award"></i> Piagam Penghargaan
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="achievement-row">
+            <div class="ach-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+            <div class="ach-text">
+                <h3>Best Research Award & Top 100 GIC (2026)</h3>
+                <p><strong>Kompetisi Esai Nasional – Himpunan Ilmu Pemerintahan Universitas Amikom Yogyakarta.</strong> Mengembangkan gagasan riset analitis bertema lingkungan dengan fokus penanganan dampak krisis kekeringan daerah.</p>
+                <div class="ach-actions">
+                    <!-- KUNCI UTAMA: Panggilan openProject('gic_amikom') harus terpasang di sini -->
+                    <button onclick="openProject('gic_amikom')" class="ach-link" style="background: none; border: none; cursor: pointer; color: inherit; font: inherit; padding: 0; display: inline-flex; align-items: center; gap: 5px;">
                         <i class="fa-solid fa-award"></i> Piagam Penghargaan
                     </button>
                 </div>

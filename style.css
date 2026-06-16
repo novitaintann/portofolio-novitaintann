@@ -49,6 +49,20 @@ body.dark {
 }
 
 /* ==========================================================================
+   KHUSUS MODE GELAP: MENGHAPUS BLOB HIJAU DI BACKGROUND HERO
+   ========================================================================== */
+body.dark .hero::after {
+    background: transparent; /* Blob hijau di latar belakang kanan bawah hilang total */
+    opacity: 0;
+}
+
+/* Jika kamu juga ingin menyembunyikan blob pink di kiri atas agar background benar-benar bersih, aktifkan ini: */
+body.dark .hero::before {
+    background: transparent;
+    opacity: 0;
+}
+
+/* ==========================================================================
    3. NAVBAR & NAVIGATION FIXED (STICKY & ANTI BOCOR)
    ========================================================================== */
 .navbar {
@@ -63,7 +77,7 @@ body.dark {
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(15px);
     background: var(--nav-bg);
-    z-index: 9999;
+    z-index: 999; /* Di bawah z-index modal agar tidak menutupi pop-up */
     box-shadow: 0 2px 20px rgba(0,0,0,0.02);
     transition: background 0.3s, padding 0.3s;
 }
@@ -638,7 +652,7 @@ body.dark .navbar {
 }
 
 /* ==========================================================================
-   10. CONTACT SECTION & MODAL SYSTEM
+   10. CONTACT SECTION & FOOTER
    ========================================================================== */
 .contact-section { 
     text-align: center; 
@@ -684,136 +698,131 @@ body.dark .navbar {
     transform: translateY(-3px);
 }
 
+.footer {
+    text-align: center;
+    padding: 30px;
+    color: var(--primary);
+    font-weight: 500;
+}
+
 /* ==========================================================================
-   PERBAIKAN TOTAL MODAL RESPONSIF (ANTI NGE-ZOOM & PAS DI SEMUA LAYAR)
+   11. SYSTEM POP-UP MODAL (CLEAN, RESPONSIF & ANTI-ZOOM)
    ========================================================================== */
 
-/* 1. Container Utama Modal */
+/* Container Latar Belakang Modal */
 .modal {
     display: none; 
     position: fixed; 
-    z-index: 1000; 
+    z-index: 99999 !important; /* Mutlak melayang di lapisan paling atas, menutup navbar */
     left: 0;
     top: 0;
     width: 100%; 
     height: 100%; 
-    background-color: rgba(0, 0, 0, 0.6); /* Latar belakang agak gelap */
-    backdrop-filter: blur(5px); /* Efek blur estetik di belakang pop-up */
-    padding: 12px; /* Jarak aman tipis di pinggiran layar HP agar tidak mentok */
+    background-color: rgba(0, 0, 0, 0.6); 
+    backdrop-filter: blur(5px); 
+    padding: 12px; 
     box-sizing: border-box;
 
-    /* MENGGUNAKAN FLEXBOX: Memaksa modal SELALU berada di tengah layar HP/Laptop */
+    /* Sentralisasi Posisi */
     align-items: center;
     justify-content: center;
 }
 
-/* Trik CSS: Jika JavaScript mengubah display menjadi block, kita paksa menjadi flex 
-   agar posisi boks tetap presisi di tengah layar tanpa merusak fungsi openProject() */
+/* Memaksa transisi display JavaScript mematuhi flexbox sentralisasi */
 [style*="display: block"]#projectModal {
     display: flex !important;
 }
 
-/* 2. Kotak Konten di Dalam Modal */
+/* Boks Konten Putih Pop-up */
 .modal-content {
-    background-color: var(--card-bg, #ffffff); /* Menyesuaikan jika ada fitur dark mode */
-    color: var(--text-color, #333333);
-    padding: 20px;
+    background-color: var(--card, #ffffff);
+    color: var(--text, #333333);
+    padding: 25px;
     border-radius: 12px;
-    width: 100%; /* Memanfaatkan ruang secara fleksibel */
-    max-width: 650px; /* Lebar maksimal yang ideal di layar laptop */
+    width: 100%; 
+    max-width: 650px; 
     position: relative;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     box-sizing: border-box;
-    animation: zoomIn 0.25s ease; /* Animasi pop-up muncul */
+    animation: zoomIn 0.25s ease;
 
-    /* KUNCI ANTI NGE-ZOOM: Membatasi tinggi boks modal agar tidak meluber keluar layar HP */
-    max-height: 85vh; /* Tinggi maksimal adalah 85% dari tinggi layar HP */
-    overflow-y: auto; /* Jika teks atau konten terlalu panjang, boks modal bisa di-scroll di dalam */
+    /* Kunci Utama Anti-Zoom di HP */
+    max-height: 85vh; 
+    overflow-y: auto; /* Jika konten sangat panjang, scroll di dalam boks putih */
 }
 
-/* 3. Tombol Close (Silang) */
-.modal-content .close {
+/* Tombol Silang (Close) */
+.close {
     position: absolute;
+    right: 20px; 
     top: 15px;
-    right: 20px;
-    font-size: 28px;
-    font-weight: bold;
-    color: #999;
+    font-size: 2rem;
     cursor: pointer;
-    transition: color 0.2s ease;
-    z-index: 10;
+    color: var(--primary);
+    line-height: 1;
+    z-index: 100;
+    transition: 0.2s;
 }
 
-.modal-content .close:hover {
-    color: #333;
+.close:hover {
+    transform: scale(1.1);
 }
 
-/* 4. Kontainer Gambar Proyek / Sertifikat JPEG agar Fleksibel */
+/* Badge Stack/Kategori di dalam Modal */
+.modal-tech-badge {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--primary);
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    margin-top: 5px;
+}
+
+/* Pembungkus Gambar & Caption (Gaya Vertikal/Kolom) */
 .modal-image-container {
     width: 100%;
-    max-height: 280px; /* Diturunkan sedikit ukurannya agar pas di layar HP */
-    overflow: hidden;
-    border-radius: 8px;
-    margin: 15px 0;
+    margin: 15px 0 20px 0;
     display: flex;
-    justify-content: center;
+    flex-direction: column; /* MEMAKSA CAPTION TURUN DI BAWAH GAMBAR */
     align-items: center;
-    background-color: #f9f9f9;
+    justify-content: center;
+    background-color: rgba(0,0,0,0.02);
+    padding: 10px;
+    border-radius: 8px;
+    box-sizing: border-box;
 }
 
 .modal-image-container img {
     max-width: 100%;
-    max-height: 100%;
-    object-fit: contain; /* Gambar mengecil secara proporsional sesuai boks, tidak terpotong */
+    max-height: 280px; /* Tinggi proporsional laptop */
+    object-fit: contain; /* Gambar mengecil utuh tanpa terpotong */
+    border-radius: 8px;
+    box-shadow: var(--shadow);
 }
 
+/* Keterangan Gambar (Caption) */
 .img-caption {
-    font-size: 11px;
-    color: #777;
-    margin: 5px 0;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 12px; /* Jarak aman di bawah gambar */
     text-align: center;
+    font-style: italic;
+    width: 100%;
+    line-height: 1.4;
 }
 
-/* Animasi Pop-up */
-@keyframes zoomIn {
-    from { transform: scale(0.95); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-
-/* ==========================================================================
-   MEDIA QUERIES (PENYESUAIAN TAMBAHAN KHUSUS LAYAR HP < 480px)
-   ========================================================================== */
-@media screen and (max-width: 480px) {
-    .modal-content {
-        padding: 15px; /* Padding lebih ramping di HP agar teks tidak terlalu sempit */
-    }
-
-    .modal-content h2 {
-        font-size: 18px; /* Ukuran judul disesuaikan agar pas di HP */
-        padding-right: 20px; /* Beri ruang agar tidak menabrak tombol silang */
-    }
-
-    .modal-image-container {
-        max-height: 200px; /* Batasi tinggi gambar sertifikat saat di HP */
-    }
-}
-
-.img-caption {
-    font-size: 11px;
-    color: #777;
-    margin: 5px 0;
-    text-align: center;
-}
-
-/* 5. Kontainer PDF Iframe (Sertifikat Hubisintek) agar Auto-Responsive */
+/* Pembungkus Pratinjau PDF (Hubisintek) */
 .pdf-container {
     position: relative;
-    padding-bottom: 56.25%; /* Aspek rasio 16:9 */
+    padding-bottom: 56.25%; /* Aspek rasio layar lebar 16:9 */
     height: 0;
     overflow: hidden;
     max-width: 100%;
     border-radius: 8px;
-    border: 1px solid #ddd;
+    border: 1px solid rgba(0,0,0,0.1);
     margin-top: 15px;
 }
 
@@ -826,87 +835,38 @@ body.dark .navbar {
     border: none;
 }
 
-/* 6. Pembungkus Teks Detail (STAR Method) */
-.modal-detail-text {
+/* Detail Teks Metodologi STAR */
+.modal-detail-text h4 {
+    font-size: 1.1rem;
+    color: var(--primary);
     margin-top: 20px;
-    line-height: 1.6;
-    font-size: 15px;
+    margin-bottom: 8px;
+    font-weight: 700;
 }
 
-.modal-detail-text h4 {
-    margin-top: 15px;
-    margin-bottom: 5px;
-    color: #e68523; /* Menyesuaikan warna tema portofoliomu */
+.modal-detail-text p, .modal-detail-text ul li {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--text-muted);
+    margin-bottom: 12px;
 }
 
 .modal-detail-text ul {
     padding-left: 20px;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
-/* Animasi Zoom In */
+/* Animasi Zoom In Pop-up */
 @keyframes zoomIn {
-    from { transform: scale(0.9); opacity: 0; }
+    from { transform: scale(0.95); opacity: 0; }
     to { transform: scale(1); opacity: 1; }
 }
 
 /* ==========================================================================
-   MEDIA QUERIES (KHUSUS UNTUK HP DAN LAYAR KECIL < 576px)
-   ========================================================================== */
-@media screen and (max-width: 576px) {
-    .modal-content {
-        margin: 10% auto; /* Jarak atas disesuaikan untuk HP */
-        padding: 20px 15px; /* Perkecil padding dalam agar teks tidak terlalu sempit */
-        width: 95%; /* Maksimalkan lebar kotak di layar HP yang sempit */
-    }
-
-    .modal-content h2 {
-        font-size: 20px; /* Perkecil ukuran judul proyek/sertifikat di HP */
-        padding-right: 25px; /* Beri ruang agar tidak menabrak tombol silang (close) */
-    }
-
-    .modal-image-container {
-        max-height: 250px; /* Batasi tinggi gambar di HP agar tidak memenuhi satu layar */
-    }
-    
-    .modal-image-container img {
-        max-height: 220px;
-    }
-
-    .pdf-container {
-        padding-bottom: 75%; /* Ubah aspek rasio sedikit lebih tinggi di HP agar PDF lebih mudah dibaca */
-    }
-    
-    .modal-detail-text {
-        font-size: 13.5px; /* Sesuaikan ukuran font detail teks di HP */
-    }
-}
-
-@keyframes modalOpen {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.close {
-    position: absolute;
-    right: 25px; top: 20px;
-    font-size: 2rem;
-    cursor: pointer;
-    color: var(--primary);
-}
-
-.footer {
-    text-align: center;
-    padding: 30px;
-    color: var(--primary);
-    font-weight: 500;
-}
-
-/* ==========================================================================
-   11. ATURAN RESPONSIVITAS DEVICE (BREAKPOINTS MEDIA QUERIES)
+   12. ATURAN RESPONSIVITAS DEVICE (BREAKPOINTS MEDIA QUERIES)
    ========================================================================== */
 
-/* RESPONSIVE TABLET LAYOUT */
+/* RESPONSIVE LAPTOP KECIL / TABLET */
 @media (max-width: 992px) {
     .hero { 
         flex-direction: column-reverse; 
@@ -934,7 +894,7 @@ body.dark .navbar {
     }
 }
 
-/* RESPONSIVE MOBILE SMARTPHONE SMART & HAMBURGER SYSTEM */
+/* RESPONSIVE MOBILE SMARTPHONE SYSTEM & HAMBURGER */
 @media (max-width: 768px) {
     .navbar { 
         padding: 15px 6%; 
@@ -944,7 +904,6 @@ body.dark .navbar {
         display: flex; 
     }
     
-    /* Dropdown List Menu Mobile Vertikal */
     .navbar ul {
         display: none;
         flex-direction: column;
@@ -960,7 +919,6 @@ body.dark .navbar {
         border-bottom: 2px solid var(--accent);
     }
     
-    /* Triger class aktif via script.js */
     .navbar ul.active { 
         display: flex; 
         animation: slideMenuDown 0.3s ease-out forwards;
@@ -991,70 +949,177 @@ body.dark .navbar {
     }
 }
 
+/* PENYESUAIAN MODAL KHUSUS LAYAR HP SANGAT KECIL (< 480px) */
+@media screen and (max-width: 480px) {
+    .modal-content {
+        padding: 15px; 
+    }
+
+    .modal-content h2 {
+        font-size: 1.15rem; 
+        padding-right: 25px; /* Beri ruang ekstra agar tidak tabrakan dengan tombol silang */
+    }
+
+    .modal-image-container img {
+        max-height: 180px; /* Gambar mengecil pas di layar HP agar teks deskripsi langsung kelihatan */
+    }
+
+    .pdf-container {
+        padding-bottom: 85%; /* Menyesuaikan rasio bingkai PDF agar tegak lurus di layar HP */
+    }
+
+    .modal-detail-text h4 {
+        font-size: 1rem;
+    }
+
+    .modal-detail-text p, .modal-detail-text ul li {
+        font-size: 0.85rem;
+    }
+}
+
 @keyframes slideMenuDown {
     from { opacity: 0; transform: translateY(-10px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-
 /* ==========================================================================
-   STYLING TAMBAHAN UNTUK KONTEN DI DALAM POP-UP MODAL
+   PERBAIKAN FITUR FILTER BAR (CENTERED DENGAN SPACE YANG PAS)
    ========================================================================== */
-.modal-tech-badge {
-    display: inline-block;
-    background: var(--accent);
-    color: var(--primary);
-    padding: 6px 14px;
-    border-radius: 8px;
-    font-size: 0.85rem;
-    font-weight: 600;
-    margin-bottom: 20px;
+.project-filter-container {
+    display: flex;
+    justify-content: center; /* Memaksa menu filter berada tepat di tengah */
+    align-items: center;
+    gap: 15px;
+    margin: 30px auto 45px auto; /* Memberikan space/jarak yang seimbang atas bawah */
+    flex-wrap: wrap;
+    padding: 0 10px;
+    width: 100%;
 }
 
+.filter-btn {
+    background: var(--card);
+    color: var(--text);
+    border: 2px solid transparent;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    transform: translateY(-2px);
+}
+
+.filter-btn.active {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 5px 15px rgba(216, 156, 164, 0.4);
+}
+
+/* ==========================================================================
+   STRUKTUR MODAL CAROUSEL BARU (PANAH DI SAMPING & BULLET DOTS)
+   ========================================================================== */
+
+/* Pembungkus luar komparasi slider */
+.modal-carousel-wrapper {
+    width: 100%;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Container Gambar utama */
 .modal-image-container {
     width: 100%;
-    margin-bottom: 25px;
-    text-align: center;
+    position: relative; /* Menjadi jangkar posisi tombol navigasi di samping */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.02);
+    border-radius: 12px;
+    padding: 10px;
+    box-sizing: border-box;
 }
 
 .modal-image-container img {
-    width: 100%;
-    max-height: 380px;
-    object-fit: cover;
-    border-radius: 15px;
-    box-shadow: var(--shadow);
+    max-width: 100%;
+    max-height: 300px;
+    object-fit: contain;
+    border-radius: 8px;
 }
 
-.img-caption {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    margin-top: 5px;
-    font-style: italic;
-}
-
-.modal-detail-text h4 {
-    font-size: 1.1rem;
+/* Tombol Navigasi Samping Gambar (< dan >) */
+.nav-slide-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--card);
     color: var(--primary);
-    margin-top: 20px;
-    margin-bottom: 8px;
-    font-weight: 700;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: all 0.2s ease;
+    z-index: 10;
 }
 
-.modal-detail-text p {
-    font-size: 0.95rem;
-    line-height: 1.7;
-    color: var(--text-muted);
-    margin-bottom: 15px;
+.nav-slide-btn:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-50%) scale(1.05);
 }
 
-.modal-detail-text ul {
-    padding-left: 20px;
-    margin-bottom: 15px;
+/* Letakkan tombol pas menempel di sisi kiri dan kanan luar boks gambar */
+.prev-btn {
+    left: -15px;
 }
 
-.modal-detail-text ul li {
-    font-size: 0.95rem;
-    line-height: 1.7;
-    color: var(--text-muted);
-    margin-bottom: 8px;
+.next-btn {
+    right: -15px;
+}
+
+/* Wadah Indikator Bulat (Dots) di Bawah Foto */
+.modal-dots-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 15px; /* Jarak pas di bawah kontainer foto */
+}
+
+/* Style Butiran Dots Bulat */
+.slide-dot {
+    cursor: pointer;
+    height: 10px;
+    width: 10px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.slide-dot:hover, .slide-dot.active {
+    background-color: var(--primary);
+    width: 22px; /* Berubah memanjang elips saat aktif agar terlihat modern */
+    border-radius: 5px;
+}
+
+/* Responsivitas Layar HP agar Tombol Navigasi Tidak Keluar Layar */
+@media screen and (max-width: 576px) {
+    .prev-btn { left: 5px; }
+    .next-btn { right: 5px; }
+    .modal-image-container img { max-height: 200px; }
+    .project-filter-container { margin: 20px auto 30px auto; gap: 10px; }
 }
