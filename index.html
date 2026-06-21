@@ -5,10 +5,23 @@
     <meta charset="UTF-8">
     <title>Novita Intan Nur Rohmah | Data Science Portfolio</title>
     
-    <!-- Link Font Awesome (Untuk Ikon), Google Fonts, dan Devicon (Untuk Ikon Skill/Framework) -->
+    <link rel="icon" type="image/png" href="assets/profile.jpg">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://novitaintann.vercel.app/">
+    <meta property="og:title" content="Novita Intan Nur Rohmah | Data Science Portfolio">
+    <meta property="og:description" content="Portfolio Data Science & Sistem Informasi oleh Novita Intan Nur Rohmah.">
+    <meta property="og:image" content="https://novitaintann.vercel.app/assets/profile.jpg">
+
+    <!-- <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://novitaintann.vercel.app/">
+    <meta property="twitter:title" content="Novita Intan Nur Rohmah | Data Science Portfolio">
+    <meta property="twitter:description" content="Portfolio Data Science & Sistem Informasi oleh Novita Intan Nur Rohmah.">
+    <meta property="twitter:image" content="https://novitaintann.vercel.app/assets/profile.jpg"> -->
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght=300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -129,6 +142,7 @@
     <div class="project-filter-container">
         <button class="filter-btn active" data-filter="all">All Projects</button>
         <button class="filter-btn" data-filter="deep-learning">Deep Learning & XAI</button>
+        <button class="filter-btn" data-filter="machine-learning">Machine Learning</button>
         <button class="filter-btn" data-filter="nlp">NLP</button>
         <button class="filter-btn" data-filter="time-series">Time Series</button>
     </div>
@@ -140,9 +154,14 @@
                     <span>TabNet & TabPFN</span>
                     <span>Explainable AI</span>
                 </div>
-                <a href="https://github.com/novitaintann" target="_blank" class="github-link" rel="noopener noreferrer">
-                    <i class="fa-brands fa-github"></i>
-                </a>
+                <div class="project-icons">
+                    <a href="https://github.com/novitaintann" target="_blank" class="github-link" rel="noopener noreferrer">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://www.kaggle.com/novitaintann" target="_blank" class="kaggle-link" rel="noopener noreferrer">
+                        <i class="fa-brands fa-kaggle"></i>
+                    </a>
+                </div>
             </div>
             <h3>Predicting Stunting Resilience using XAI</h3>
             <p>Studi komparatif algoritma tabular deep learning menggunakan TabNet dan TabPFN. Mengimplementasikan Explainable AI (XAI) untuk visualisasi kontribusi fitur kesehatan utama.</p>
@@ -155,9 +174,14 @@
                     <span>NLP</span>
                     <span>Python</span>
                 </div>
-                <a href="https://github.com/novitaintann" target="_blank" class="github-link" rel="noopener noreferrer">
-                    <i class="fa-brands fa-github"></i>
-                </a>
+                <div class="project-icons">
+                    <a href="https://github.com/novitaintann" target="_blank" class="github-link" rel="noopener noreferrer">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://www.kaggle.com/novitaintann" target="_blank" class="kaggle-link" rel="noopener noreferrer">
+                        <i class="fa-brands fa-kaggle"></i>
+                    </a>
+                </div>
             </div>
             <h3>Sentiment Analysis BRImo Reviews</h3>
             <p>Analisis sentimen ribuan ulasan pengguna aplikasi BRImo menggunakan pendekatan Natural Language Processing (NLP) untuk klasifikasi kepuasan pelanggan.</p>
@@ -170,9 +194,14 @@
                     <span>Time Series</span>
                     <span>Deep Learning</span>
                 </div>
-                <a href="https://github.com/novitaintann" target="_blank" class="github-link" rel="noopener noreferrer">
-                    <i class="fa-brands fa-github"></i>
-                </a>
+                <div class="project-icons">
+                    <a href="https://github.com/novitaintann" target="_blank" class="github-link" rel="noopener noreferrer">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://www.kaggle.com/novitaintann" target="_blank" class="kaggle-link" rel="noopener noreferrer">
+                        <i class="fa-brands fa-kaggle"></i>
+                    </a>
+                </div>
             </div>
             <h3>Retail Sales Forecasting (SARIMA vs LSTM)</h3>
             <p>Peramalan omzet retail harian Rossmann Store Sales. Membandingkan model statistik dengan arsitektur RNN, LSTM, dan GRU menggunakan evaluasi MAE, RMSE, dan R2 Score.</p>
@@ -185,13 +214,38 @@
                     <span>CNN</span>
                     <span>Streamlit</span>
                 </div>
-                <a href="https://github.com/novitaintann" target="_blank" class="github-link" rel="noopener noreferrer">
-                    <i class="fa-brands fa-github"></i>
-                </a>
+                <div class="project-icons">
+                    <a href="https://github.com/novitaintann" target="_blank" class="github-link" rel="noopener noreferrer">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://www.kaggle.com/novitaintann" target="_blank" class="kaggle-link" rel="noopener noreferrer">
+                        <i class="fa-brands fa-kaggle"></i>
+                    </a>
+                </div>
             </div>
             <h3>Fruit Maturity Detection App</h3>
             <p>Sistem klasifikasi kematangan citra buah (tomat, jeruk, pisang, apel) menggunakan CNN dan Random Forest, di-deploy secara real-time via web interaktif Streamlit.</p>
             <button onclick="openProject('tomato')" class="detail-btn">Lihat Detail →</button>
+        </div>
+        <div class="project-card" data-category="machine-learning">
+            <div class="project-top">
+                <div class="project-tags">
+                    <span>Random Forest</span>
+                    <span>XGBoost</span>
+                    <span>Streamlit</span>
+                </div>
+                <div class="project-icons">
+                    <a href="https://github.com/novitaintann" target="_blank" class="github-link" rel="noopener noreferrer">
+                        <i class="fa-brands fa-github"></i>
+                    </a>
+                    <a href="https://www.kaggle.com/novitaintann" target="_blank" class="kaggle-link" rel="noopener noreferrer">
+                        <i class="fa-brands fa-kaggle"></i>
+                    </a>
+                </div>
+            </div>
+            <h3>Jakarta House Price Prediction App</h3>
+            <p>Aplikasi analitik dan estimasi harga properti di Jakarta menggunakan model ensemble (Random Forest & XGBoost), dilengkapi pipeline rekayasa fitur dan deploy via Streamlit.</p>
+            <button onclick="openProject('housePrice')" class="detail-btn">Lihat Detail →</button>
         </div>
     </div>
 </section>

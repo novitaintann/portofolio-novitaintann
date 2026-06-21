@@ -201,6 +201,26 @@ const projectData = {
             <p>Sistem berhasil melakukan deteksi kualitas dan kematangan buah secara real-time melalui simulasi unggah gambar dengan performa klasifikasi yang tinggi.</p>
         `
     },
+    housePrice: {
+        title: "Jakarta House Price Prediction App",
+        image: ["assets/project/house_price/model.png", "assets/project/house_price/form.png", "assets/project/house_price/result.png"],
+        tech: "Random Forest Regressor, XGBoost Regressor, Streamlit, Python, Pandas, Scikit-Learn",
+        desc: `
+            <h4>Situation (Latar Belakang)</h4>
+            <p>Membangun aplikasi web analitik dan prediksi harga properti rumah di wilayah Jakarta yang dinamis untuk membantu calon pembeli atau investor mendapatkan estimasi harga yang akurat berdasarkan spesifikasi bangunan dan lokasi.</p>
+            
+            <h4>Action (Metodologi Teknis)</h4>
+            <ul>
+                <li>Mengotomatisasi pipeline akuisisi data dari Kaggle menggunakan <code>kagglehub</code> dan menerapkan pembersihan data (menangani missing values serta mereduksi pencilan/outliers dengan persentil 95).</li>
+                <li>Melakukan rekayasa fitur (Feature Engineering) berupa pembuatan rasio luas bangunan terhadap lahan (building ratio) serta melakukan transformasi logaritma (Log Transformation) pada variabel target properti untuk mengatasi data yang skewed.</li>
+                <li>Melatih, mengoptimasi, dan membandingkan performa dua algoritma ensemble learning kuat: Random Forest Regressor dan XGBoost Regressor.</li>
+                <li>Mendeploy model terbaik ke dalam platform antarmuka web interaktif berbasis Streamlit menggunakan optimasi <code>@st.cache_resource</code> untuk efisiensi waktu pemuatan model.</li>
+            </ul>
+            
+            <h4>Result (Hasil Pemodelan)</h4>
+            <p>Aplikasi web berhasil memprediksi estimasi harga rumah secara dinamis berdasarkan input spesifikasi pengguna dengan visualisasi metrik performa model (R² Score, MAE, RMSE) yang transparan.</p>
+        `
+    },
     hubisintek: {
         title: "Sertifikat Hubisintek",
         image: [], 

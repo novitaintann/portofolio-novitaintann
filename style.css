@@ -450,13 +450,36 @@ body.dark .navbar {
     margin-right: 5px;
 }
 
+/* Mengatur agar ikon GitHub & Kaggle berjejer rapi bersebelahan */
+.project-icons {
+    display: flex;
+    gap: 12px; /* Mengatur jarak antar ikon (silakan ubah angkanya sesuai selera) */
+    align-items: center; /* Memastikan ikon sejajar tinggi rata tengah */
+}
+
+/* Memastikan ukuran ikon seragam dan rapi */
+.project-icons i {
+    font-size: 1.3rem; 
+    transition: color 0.3s ease;
+}
+
 .github-link { 
     color: var(--primary); 
-    font-size: 1.25rem; 
+    font-size: 1.2rem; 
     transition: 0.3s;
 }
 
 .github-link:hover {
+    transform: scale(1.15);
+}
+
+.kaggle-link {
+    color: var(--primary);  /* Warna default, sesuaikan dengan tema webmu */
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.kaggle-link:hover {
     transform: scale(1.15);
 }
 
