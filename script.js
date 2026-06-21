@@ -111,7 +111,7 @@ const projectData = {
     gic_amikom: {
         title: "Best Research Award - Government Insight Competition (GIC) 2026",
         // TIPS: Masukkan 2 gambar (misal: piagam lomba & screenshot dashboard bento) agar bullet dots & panah otomatis muncul!
-        image: ["assets/sertifikat/gic-amikom.jpg", "assets/project-gic-dashboard.png"], 
+        image: ["assets/sertifikat/gic-amikom.jpg", "assets/project/gic/dashboard.png"], 
         tech: "Riset Esai & Komparasi Model Prediktif Nasional",
         desc: `
             <h4>Situation (Latar Belakang Riset)</h4>
@@ -136,7 +136,7 @@ const projectData = {
     },
     stunting: {
         title: "Predicting Stunting Resilience using XAI",
-        image: ["assets/project-stunting.png"], 
+        image: ["assets/project/stunting/akurasi.png", "assets/project/stunting/xai.png"], 
         tech: "TabNet, TabPFN, Python, Scikit-Learn, SHAP (Explainable AI)",
         desc: `
             <h4>Situation (Latar Belakang)</h4>
@@ -152,7 +152,7 @@ const projectData = {
     },
     brimo: {
         title: "Sentiment Analysis BRImo Reviews",
-        image: ["assets/project-brimo.png"],
+        image: ["assets/project/brimo/wordcloud.png"],
         tech: "Python, NLP, NLTK, Scikit-Learn, Pandas, Web Scraping",
         desc: `
             <h4>Situation (Latar Belakang)</h4>
@@ -186,7 +186,7 @@ const projectData = {
     },
     tomato: {
         title: "Fruit Maturity Detection App",
-        image: ["assets/project-fruit.png"],
+        image: ["assets/project/tomat/matang.png", "assets/project/tomat/mentah.png", "assets/project/tomat/setengah.png"],
         tech: "Convolutional Neural Network (CNN), Random Forest, Streamlit, Python, OpenCV",
         desc: `
             <h4>Situation (Latar Belakang)</h4>
@@ -210,11 +210,6 @@ const projectData = {
             <div class="pdf-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%;">
                 <iframe src="assets/sertifikat-hubisintek.pdf" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;" type="application/pdf"></iframe>
             </div>
-            <p style="margin-top: 15px; text-align: center;">
-                <a href="assets/sertifikat-hubisintek.pdf" target="_blank" style="text-decoration: none; display: inline-block; padding: 10px 20px; background-color: #D89CA4; color: white; border-radius: 6px; font-weight: 500;">
-                    <i class="fa-solid fa-download"></i> Buka Penuh / Download PDF
-                </a>
-            </p>
         `
     },
     senatib: {
@@ -228,7 +223,7 @@ const projectData = {
     },
     tdc_its: {
         title: "Sertifikat Top 5 Technology Development Competition (TDC) ITS",
-        image: ["assets/sertifikat/TDC-ITS.jpeg", "assets/sertifikat/tdc-slide2.jpg"], 
+        image: ["assets/sertifikat/TDC-ITS.jpeg", "assets/project/tdc/poster_heyra.png"], 
         tech: "Penghargaan Kompetisi Tingkat Nasional",
         desc: `
             <h4>Detail Penghargaan</h4>
@@ -408,14 +403,29 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // ===============================
-// HAMBURGER MENU MOBILE
+// HAMBURGER MENU MOBILE (FIXED)
 // ===============================
-const hamburger = document.getElementById('hamburgerMenu');
-const navMenu = document.getElementById('navMenu');
+const hamburger = document.querySelector('.hamburger'); // Mengambil class dari tombol hamburger
+const navMenu = document.querySelector('.navbar ul');  // Mengambil elemen ul di dalam navbar sesuai CSS
 
 if (hamburger && navMenu) {
-    hamburger.addEventListener('click', () => { navMenu.classList.toggle('active'); });
-    document.querySelectorAll('.nav-menu a').forEach(link => {
-        link.addEventListener('click', () => { navMenu.classList.remove('active'); });
+    hamburger.addEventListener('click', (e) => {
+        e.stopPropagation(); // Mencegah event bubbling
+        navMenu.classList.toggle('active');
+    });
+
+    // Menutup menu kembali secara otomatis saat salah satu link navigasi diklik
+    const navLinks = document.querySelectorAll('.navbar ul li a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+        });
+    });
+
+    // Opsional: Menutup menu jika pengguna mengklik area di luar menu navbar
+    document.addEventListener('click', (e) => {
+        if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+            navMenu.classList.remove('active');
+        }
     });
 }
