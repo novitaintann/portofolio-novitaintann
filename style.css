@@ -12,13 +12,27 @@
 
 html {
     scroll-behavior: smooth;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
 }
 
 body {
     overflow-x: hidden;
+    width: 100%;
+    max-width: 100%;
     background: var(--bg);
     color: var(--text);
     transition: background 0.4s, color 0.4s;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
 
 /* ==========================================================================
@@ -114,6 +128,7 @@ body.dark .navbar {
     flex-direction: column;
     gap: 5px;
     cursor: pointer;
+    transition: 0.3s ease;
 }
 
 .hamburger span {
@@ -121,7 +136,21 @@ body.dark .navbar {
     height: 3px;
     background: var(--text);
     border-radius: 2px;
-    transition: 0.3s;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    transform-origin: center;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+    transform: scale(0);
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
 }
 
 #themeToggle {
@@ -153,6 +182,7 @@ body.dark .navbar {
     max-width: 1400px;
     margin: 0 auto;
     position: relative;
+    overflow: hidden;
 }
 
 .hero::before {
@@ -207,6 +237,78 @@ body.dark .navbar {
     font-size: 0.9rem;
 }
 
+/* Animasi Page Load & Scroll Reveal */
+@keyframes fadeInSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.95) rotate(-1.5deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(-1.5deg);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.hidden {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.navbar {
+    animation: slideDown 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.hero-left > * {
+    opacity: 0;
+    animation: fadeInSlideUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.hero-left .search-box { animation-delay: 0.15s; }
+.hero-left .hero-name { animation-delay: 0.3s; }
+.hero-left #typing { animation-delay: 0.45s; }
+.hero-left .hero-desc { animation-delay: 0.6s; }
+.hero-left .hero-buttons { animation-delay: 0.75s; }
+.hero-left .tools-container { animation-delay: 0.9s; }
+
+.hero-right .photo-card {
+    opacity: 0;
+    animation: fadeInScale 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation-delay: 0.45s;
+}
+
 .hero-name {
     font-size: 4.2rem;
     font-weight: 800;
@@ -221,6 +323,15 @@ body.dark .navbar {
     color: var(--secondary);
     font-size: 1.4rem;
     font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+}
+
+#typing::after {
+    content: '|';
+    margin-left: 4px;
+    color: var(--secondary);
+    animation: blink 0.8s infinite;
 }
 
 .hero-desc {
@@ -229,6 +340,7 @@ body.dark .navbar {
     color: var(--text-muted);
     margin-bottom: 30px;
     max-width: 580px;
+    text-align: justify;
 }
 
 .hero-buttons {
@@ -250,27 +362,28 @@ body.dark .navbar {
     color: white;
 }
 
-.btn-primary:hover { 
-    transform: translateY(-3px); 
-    box-shadow: 0 5px 15px rgba(216, 156, 164, 0.4);
-}
-
 .btn-secondary {
     border: 2px solid var(--primary);
     color: var(--primary);
     background: transparent;
 }
 
-.btn-secondary:hover {
-    background: var(--primary);
-    color: white;
+@media (hover: hover) {
+    .btn-primary:hover { 
+        transform: translateY(-3px); 
+        box-shadow: 0 5px 15px rgba(216, 156, 164, 0.4);
+    }
+    .btn-secondary:hover {
+        background: var(--primary);
+        color: white;
+    }
 }
 
-/* BRAND SKILL ICONS */
 .tools-container {
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
+    max-width: 550px;
 }
 
 .tool-card {
@@ -287,9 +400,11 @@ body.dark .navbar {
     transition: 0.3s;
 }
 
-.tool-card:hover {
-    transform: translateY(-5px);
-    background: var(--accent);
+@media (hover: hover) {
+    .tool-card:hover {
+        transform: translateY(-5px);
+        background: var(--accent);
+    }
 }
 
 .photo-card {
@@ -313,14 +428,14 @@ body.dark .navbar {
    5. GENERAL SECTION CONTAINER & SEIMBANG MARGIN
    ========================================================================== */
 .section {
-    padding: 100px 8%;
+    padding: 60px 8%;
     max-width: 1400px;
     margin: 0 auto;
 }
 
 .section-title {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 40px;
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--primary);
@@ -335,26 +450,42 @@ body.dark .navbar {
     transition: 0.3s;
 }
 
+.glass-card h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text);
+}
+
 .glass-card p {
     line-height: 1.8;
     font-size: 1.05rem;
+    text-align: justify;
+}
+
+.education-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 8px;
 }
 
 .education-meta {
-    display: flex;
-    justify-content: space-between;
     font-weight: 600;
-    margin: 10px 0 20px;
-    flex-wrap: wrap;
-    gap: 10px;
+    margin-bottom: 20px;
+    color: var(--text-muted);
+    font-size: 1rem;
 }
 
 .gpa-badge {
     background: linear-gradient(135deg, var(--primary), var(--secondary));
     color: white;
-    padding: 4px 14px;
-    border-radius: 20px;
+    padding: 6px 16px;
+    border-radius: 50px;
     font-weight: 700;
+    font-size: 0.9rem;
+    box-shadow: 0 4px 10px rgba(216, 156, 164, 0.15);
 }
 
 .tags {
@@ -380,7 +511,7 @@ body.dark .navbar {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 25px;
-    padding: 0 8% 80px;
+    padding: 0 8% 50px;
     max-width: 1400px;
     margin: 0 auto;
 }
@@ -394,8 +525,10 @@ body.dark .navbar {
     transition: 0.3s;
 }
 
-.stat-card:hover {
-    transform: translateY(-5px);
+@media (hover: hover) {
+    .stat-card:hover {
+        transform: translateY(-5px);
+    }
 }
 
 .stat-card h3 {
@@ -414,9 +547,10 @@ body.dark .navbar {
    7. FEATURED PROJECTS GRID
    ========================================================================== */
 .project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
 }
 
 .project-card {
@@ -424,20 +558,36 @@ body.dark .navbar {
     border-radius: 25px;
     padding: 25px;
     box-shadow: var(--shadow);
-    transition: .3s;
-    border: 1px solid rgba(255, 255, 255, 0.02);
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    border: 2px solid transparent;
+    flex: 0 1 320px;
+    width: 100%;
+    max-width: 320px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
 }
 
-.project-card:hover {
-    transform: translateY(-5px);
-    border: 2px solid var(--secondary);
+@media (hover: hover) {
+    .project-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--secondary);
+    }
 }
 
 .project-top {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 15px;
+    gap: 10px;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    flex: 1;
 }
 
 .project-tags span {
@@ -447,7 +597,7 @@ body.dark .navbar {
     border-radius: 20px;
     font-size: 0.75rem;
     font-weight: 600;
-    margin-right: 5px;
+    white-space: nowrap;
 }
 
 /* Mengatur agar ikon GitHub & Kaggle berjejer rapi bersebelahan */
@@ -494,6 +644,7 @@ body.dark .navbar {
     font-size: 0.9rem; 
     line-height: 1.6; 
     margin-bottom: 20px; 
+    text-align: justify;
 }
 
 .detail-btn { 
@@ -503,10 +654,15 @@ body.dark .navbar {
     font-weight: 600; 
     cursor: pointer; 
     transition: 0.3s;
+    align-self: flex-start;
+    padding: 0;
+    margin-top: auto;
 }
 
-.detail-btn:hover {
-    transform: translateX(5px);
+@media (hover: hover) {
+    .detail-btn:hover {
+        transform: translateX(5px);
+    }
 }
 
 /* ==========================================================================
@@ -574,6 +730,7 @@ body.dark .navbar {
     line-height: 1.6; 
     flex-grow: 1; 
     margin-bottom: 20px; 
+    text-align: justify;
 }
 
 .doc-links { 
@@ -629,6 +786,7 @@ body.dark .navbar {
     color: var(--primary);
     width: 50px;
     height: 50px;
+    flex-shrink: 0;
     border-radius: 15px;
     display: flex;
     justify-content: center;
@@ -647,6 +805,7 @@ body.dark .navbar {
     font-size: 0.9rem; 
     line-height: 1.6; 
     margin-bottom: 12px; 
+    text-align: justify;
 }
 
 .ach-actions { 
@@ -723,7 +882,7 @@ body.dark .navbar {
 
 .footer {
     text-align: center;
-    padding: 30px;
+    padding: 25px;
     color: var(--primary);
     font-weight: 500;
 }
@@ -731,6 +890,11 @@ body.dark .navbar {
 /* ==========================================================================
    11. SYSTEM POP-UP MODAL (CLEAN, RESPONSIF & ANTI-ZOOM)
    ========================================================================== */
+
+/* Mencegah scroll pada background ketika modal terbuka */
+body.modal-open {
+    overflow: hidden !important;
+}
 
 /* Container Latar Belakang Modal */
 .modal {
@@ -749,6 +913,9 @@ body.dark .navbar {
     /* Sentralisasi Posisi */
     align-items: center;
     justify-content: center;
+
+    /* Nonaktifkan gesture sentuh pada overlay untuk mencegah background scroll di HP */
+    touch-action: none;
 }
 
 /* Memaksa transisi display JavaScript mematuhi flexbox sentralisasi */
@@ -760,35 +927,61 @@ body.dark .navbar {
 .modal-content {
     background-color: var(--card, #ffffff);
     color: var(--text, #333333);
-    padding: 25px;
-    border-radius: 12px;
+    padding: 30px 35px;
+    border-radius: 20px;
     width: 100%; 
-    max-width: 650px; 
+    max-width: 680px; 
     position: relative;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
     box-sizing: border-box;
-    animation: zoomIn 0.25s ease;
+    animation: zoomIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 
-    /* Kunci Utama Anti-Zoom di HP */
-    max-height: 85vh; 
+    /* Kunci Utama Anti-Zoom di HP & Scroll Internal */
+    max-height: 82vh; 
     overflow-y: auto; /* Jika konten sangat panjang, scroll di dalam boks putih */
+
+    /* Scroll containment & scroll gestures khusus vertikal di modal */
+    overscroll-behavior: contain;
+    touch-action: pan-y;
+
+    /* Sembunyikan scrollbar bawaan di modal */
+    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;  /* IE and Edge */
+}
+
+/* Sembunyikan scrollbar bawaan untuk Chrome, Safari, dan Opera */
+.modal-content::-webkit-scrollbar {
+    display: none;
+}
+
+/* Judul Modal Dialog */
+.modal-content h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 8px;
+    line-height: 1.35;
+    padding-right: 35px; /* Beri ruang agar tidak menabrak tombol close */
 }
 
 /* Tombol Silang (Close) */
 .close {
     position: absolute;
-    right: 20px; 
-    top: 15px;
-    font-size: 2rem;
+    right: 22px; 
+    top: 22px;
+    font-size: 1.8rem;
     cursor: pointer;
-    color: var(--primary);
+    color: var(--text-muted);
     line-height: 1;
     z-index: 100;
-    transition: 0.2s;
+    transition: transform 0.2s ease, color 0.2s ease;
 }
 
-.close:hover {
-    transform: scale(1.1);
+@media (hover: hover) {
+    .close:hover {
+        transform: scale(1.1) rotate(90deg);
+        color: var(--primary);
+    }
 }
 
 /* Badge Stack/Kategori di dalam Modal */
@@ -861,10 +1054,22 @@ body.dark .navbar {
 /* Detail Teks Metodologi STAR */
 .modal-detail-text h4 {
     font-size: 1.1rem;
-    color: var(--primary);
-    margin-top: 20px;
-    margin-bottom: 8px;
+    color: var(--text);
+    margin-top: 24px;
+    margin-bottom: 12px;
     font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.modal-detail-text h4::before {
+    content: "";
+    display: inline-block;
+    width: 4px;
+    height: 16px;
+    background: var(--primary);
+    border-radius: 2px;
 }
 
 .modal-detail-text p, .modal-detail-text ul li {
@@ -872,6 +1077,7 @@ body.dark .navbar {
     line-height: 1.7;
     color: var(--text-muted);
     margin-bottom: 12px;
+    text-align: justify;
 }
 
 .modal-detail-text ul {
@@ -892,16 +1098,23 @@ body.dark .navbar {
 /* RESPONSIVE LAPTOP KECIL / TABLET */
 @media (max-width: 992px) {
     .hero { 
+        min-height: auto;
         flex-direction: column-reverse; 
         text-align: center; 
-        padding-top: 130px; 
-        gap: 40px;
+        padding: 120px 8% 50px; 
+        gap: 35px;
     }
     
     .hero-left { 
         display: flex; 
         flex-direction: column; 
         align-items: center; 
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .tools-container {
+        justify-content: center;
     }
     
     .hero-name { 
@@ -914,6 +1127,10 @@ body.dark .navbar {
     
     .photo-card {
         max-width: 300px;
+    }
+
+    .section {
+        padding: 50px 6%;
     }
 }
 
@@ -950,11 +1167,24 @@ body.dark .navbar {
     .hero-name { 
         font-size: 2.3rem; 
     }
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 25px;
+    }
+
+    .glass-card h3 {
+        font-size: 1.2rem;
+    }
     
     .achievement-row { 
         flex-direction: column; 
         align-items: flex-start;
         gap: 15px;
+    }
+
+    .ach-actions {
+        flex-wrap: wrap;
     }
     
     .hero-buttons { 
@@ -967,20 +1197,49 @@ body.dark .navbar {
         width: 100%;
     }
     
-    .project-grid, .stats, .experience-grid-new {
+    .project-grid, .experience-grid-new {
         grid-template-columns: 1fr;
+    }
+
+    .stats {
+        grid-template-columns: repeat(2, 1fr); /* 2x2 grid stats on mobile! */
+        gap: 15px;
+        padding: 0 6% 40px;
+    }
+
+    .section {
+        padding: 40px 5%;
+    }
+
+    .contact-section {
+        padding: 50px 5% 60px;
+    }
+
+    .exp-card-new h3 {
+        font-size: 1.15rem;
+    }
+
+    .exp-card-new h4 {
+        font-size: 0.9rem;
+    }
+
+    .footer {
+        font-size: 0.8rem;
+        padding: 20px 10px;
     }
 }
 
 /* PENYESUAIAN MODAL KHUSUS LAYAR HP SANGAT KECIL (< 480px) */
 @media screen and (max-width: 480px) {
     .modal-content {
-        padding: 15px; 
+        padding: 20px 15px 15px; 
+        border-radius: 16px;
     }
 
     .modal-content h2 {
-        font-size: 1.15rem; 
-        padding-right: 25px; /* Beri ruang ekstra agar tidak tabrakan dengan tombol silang */
+        font-size: 1.3rem; 
+        padding-right: 35px; /* Beri ruang ekstra agar tidak tabrakan dengan tombol silang */
+        margin-bottom: 12px;
     }
 
     .modal-image-container img {
@@ -997,6 +1256,15 @@ body.dark .navbar {
 
     .modal-detail-text p, .modal-detail-text ul li {
         font-size: 0.85rem;
+    }
+
+    .stats {
+        gap: 10px;
+    }
+
+    .footer {
+        font-size: 0.72rem;
+        padding: 15px 5px;
     }
 }
 
@@ -1032,10 +1300,12 @@ body.dark .navbar {
     transition: all 0.3s ease;
 }
 
-.filter-btn:hover {
-    border-color: var(--primary);
-    color: var(--primary);
-    transform: translateY(-2px);
+@media (hover: hover) {
+    .filter-btn:hover {
+        border-color: var(--primary);
+        color: var(--primary);
+        transform: translateY(-2px);
+    }
 }
 
 .filter-btn.active {
@@ -1047,6 +1317,21 @@ body.dark .navbar {
 /* ==========================================================================
    STRUKTUR MODAL CAROUSEL BARU (PANAH DI SAMPING & BULLET DOTS)
    ========================================================================== */
+
+/* Animasi untuk slide modal */
+.mySlides {
+    width: 100%;
+    display: none;
+}
+
+.animate-fade {
+    animation: fadeEffect 0.4s ease-in-out;
+}
+
+@keyframes fadeEffect {
+    from { opacity: 0.5; }
+    to { opacity: 1; }
+}
 
 /* Pembungkus luar komparasi slider */
 .modal-carousel-wrapper {
@@ -1077,31 +1362,39 @@ body.dark .navbar {
     border-radius: 8px;
 }
 
-/* Tombol Navigasi Samping Gambar (< dan >) */
+/* Tombol Navigasi Samping Gambar (< dan >) - Sleek Glassmorphism */
 .nav-slide-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: var(--card);
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     color: var(--primary);
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    width: 40px;
-    height: 40px;
+    border: none;
+    width: 38px;
+    height: 38px;
     border-radius: 50%;
-    font-size: 16px;
+    font-size: 14px;
     cursor: pointer;
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
     z-index: 10;
 }
 
-.nav-slide-btn:hover {
-    background: var(--primary);
-    color: white;
-    transform: translateY(-50%) scale(1.05);
+body.dark .nav-slide-btn {
+    background: rgba(30, 30, 30, 0.75);
+}
+
+@media (hover: hover) {
+    .nav-slide-btn:hover {
+        background: var(--primary);
+        color: white;
+        transform: translateY(-50%) scale(1.05);
+    }
 }
 
 /* Letakkan tombol pas menempel di sisi kiri dan kanan luar boks gambar */
@@ -1133,7 +1426,13 @@ body.dark .navbar {
     transition: all 0.3s ease;
 }
 
-.slide-dot:hover, .slide-dot.active {
+@media (hover: hover) {
+    .slide-dot:hover {
+        background-color: var(--primary);
+    }
+}
+
+.slide-dot.active {
     background-color: var(--primary);
     width: 22px; /* Berubah memanjang elips saat aktif agar terlihat modern */
     border-radius: 5px;
@@ -1141,8 +1440,14 @@ body.dark .navbar {
 
 /* Responsivitas Layar HP agar Tombol Navigasi Tidak Keluar Layar */
 @media screen and (max-width: 576px) {
+    .nav-slide-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 12px;
+    }
     .prev-btn { left: 5px; }
     .next-btn { right: 5px; }
     .modal-image-container img { max-height: 200px; }
     .project-filter-container { margin: 20px auto 30px auto; gap: 10px; }
 }
+

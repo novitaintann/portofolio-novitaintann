@@ -338,7 +338,7 @@ function openProject(id) {
         `;
         
         modal.style.display = "block";
-        document.body.style.overflow = "hidden";
+        document.body.classList.add("modal-open");
     }
 }
 
@@ -378,7 +378,7 @@ function currentSlide(n) {
 function closeProject() {
     if (modal) {
         modal.style.display = "none";
-        document.body.style.overflow = "auto";
+        document.body.classList.remove("modal-open");
     }
 }
 
@@ -407,7 +407,7 @@ document.addEventListener("DOMContentLoaded", () => {
             projectCards.forEach(card => {
                 const cardCategory = card.getAttribute("data-category");
                 if (filterValue === "all" || filterValue === cardCategory) {
-                    card.style.display = "block";
+                    card.style.display = "flex";
                     setTimeout(() => {
                         card.style.opacity = "1";
                         card.style.transform = "scale(1)";
@@ -431,6 +431,7 @@ const navMenu = document.querySelector('.navbar ul');  // Mengambil elemen ul di
 if (hamburger && navMenu) {
     hamburger.addEventListener('click', (e) => {
         e.stopPropagation(); // Mencegah event bubbling
+        hamburger.classList.toggle('active');
         navMenu.classList.toggle('active');
     });
 
@@ -438,6 +439,7 @@ if (hamburger && navMenu) {
     const navLinks = document.querySelectorAll('.navbar ul li a');
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
             navMenu.classList.remove('active');
         });
     });
@@ -445,7 +447,17 @@ if (hamburger && navMenu) {
     // Opsional: Menutup menu jika pengguna mengklik area di luar menu navbar
     document.addEventListener('click', (e) => {
         if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+            hamburger.classList.remove('active');
             navMenu.classList.remove('active');
         }
     });
+}
+
+// ===============================
+// AUTOMATIC FOOTER YEAR
+// ===============================
+const yearElement = document.getElementById("currentYear");
+if (yearElement) {
+    const currentYear = new Date().getFullYear();
+    yearElement.textContent = currentYear > 2026 ? `2026 - ${currentYear}` : "2026";
 }
