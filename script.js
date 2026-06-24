@@ -221,6 +221,26 @@ const projectData = {
             <p>Aplikasi web berhasil memprediksi estimasi harga rumah secara dinamis berdasarkan input spesifikasi pengguna dengan visualisasi metrik performa model (R² Score, MAE, RMSE) yang transparan.</p>
         `
     },
+    telcoChurn: {
+        title: "Telco Customer Churn Prediction & Deployment",
+        image: ["assets/project/churn/churn1.png", "assets/project/churn/churn2.png", "assets/project/churn/churn3.png", "assets/project/churn/churn4.png"],
+        tech: "XGBoost Classifier, Logistic Regression, Streamlit, Python, Pandas, Scikit-Learn",
+        desc: `
+            <h4>Situation (Latar Belakang)</h4>
+            <p>Menganalisis data profil dan perilaku lebih dari 7.000 pelanggan perusahaan telekomunikasi untuk memprediksi risiko kehilangan pelanggan (customer churn) secara otomatis, membantu tim marketing mengambil tindakan preventif sebelum pelanggan beralih ke kompetitor.</p>
+            
+            <h4>Action (Metodologi Teknis)</h4>
+            <ul>
+                <li>Melakukan data cleaning, imputasi logis data kosong pada variabel <code>TotalCharges</code> berbasis kondisi pelanggan baru (tenure = 0), serta rekayasa prapemrosesan (One-Hot Encoding).</li>
+                <li>Menerapkan Feature Scaling menggunakan <code>StandardScaler</code> secara ketat setelah pemisahan data (data splitting) guna menghindari kebocoran data (data leakage) ke data testing.</li>
+                <li>Menangani masalah data yang tidak seimbang (class imbalance ~26% churn rate) menggunakan teknik Cost-Sensitive Learning lewat parameter bawaan model: <code>scale_pos_weight</code> pada XGBoost dan <code>class_weight='balanced'</code> pada Logistic Regression.</li>
+                <li>Mendeploy model prediksi ke platform web interaktif berbasis Streamlit dan mengoptimasi keputusan bisnis dengan mengubah ambang batas bawaan model (default threshold 50%) menjadi Custom Threshold sebesar 40% demi mendeteksi pelanggan labil secara lebih dini.</li>
+            </ul>
+            
+            <h4>Result (Hasil Pemodelan)</h4>
+            <p>Model Logistic Regression memberikan performa penentu terbaik dengan <strong>Skor ROC-AUC mencapai 84.17%</strong> dan <strong>Recall sebesar 78%</strong> untuk kelas churn, berhasil meminimalkan risiko lolosnya pelanggan yang rawan kabur. Hasil ekstraksi Feature Importance membuktikan secara matematis bahwa tipe kontrak bulanan (Month-to-month) dan paket layanan Fiber Optic merupakan faktor pemicu utama kerentanan pelanggan.</p>
+        `
+    },
     hubisintek: {
         title: "Sertifikat Hubisintek",
         image: [], 
